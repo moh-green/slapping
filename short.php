@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slapping - Contact</title>
-    <link rel="stylesheet" href="assets/css/contact.min.css">
+    <title>Slapping - short</title>
+    <link rel="stylesheet" href="assets/css/short.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Sigmar+One&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
+    <header>
     <img src="assets/img/logo.png" alt="logo de Slapping" id="logo">
        <nav>
               <ul>
@@ -24,8 +27,7 @@
 
     </main>
     <footer>
-        <p>Slapping - Le média qui claque</p>
+        <p>LE FOOTER </p>
     </footer>
-    
 </body>
 </html>

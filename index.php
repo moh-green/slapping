@@ -16,9 +16,9 @@
        <nav>
               <ul>
                 <li><a href="index.php">Accueil</a></li>
-                <li><a href="index.php">Vidéos</a></li>
-                <li><a href="index.php">Short</a></li>
-                <li><a href="index.php">Actualités</a></li>
+                <li><a href="video.php">Vidéos</a></li>
+                <li><a href="short.php">Short</a></li>
+                <li><a href="actualite.php">Actualités</a></li>
                 <li><a href="contact.php">Contact</a></li>
               </ul>
        </nav> 

@@ -183,8 +183,6 @@ body main #contenu #contenu-actualite article div {
   width: 300px;
 }
 body footer {
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
   margin-top: 50px;
   height: 100px;
   background-color: #8664e3;
