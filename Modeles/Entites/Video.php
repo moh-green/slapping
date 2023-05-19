@@ -6,7 +6,6 @@ class Video {
     private $nom;
     private $genre;
     private $lien;
-    private $ajouter;
 
     /**
      * Get the value of id
@@ -84,26 +83,6 @@ class Video {
     public function setLien($lien)
     {
         $this->lien = $lien;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of ajouter
-     */ 
-    public function getAjouter()
-    {
-        return $this->ajouter;
-    }
-
-    /**
-     * Set the value of ajouter
-     *
-     * @return  self
-     */ 
-    public function setAjouter($ajouter)
-    {
-        $this->ajouter = $ajouter;
 
         return $this;
     }

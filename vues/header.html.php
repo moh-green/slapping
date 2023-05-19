@@ -21,33 +21,50 @@
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
-            <a class="navbar-brand" href="<?= lien("home", "liste") ?>">BackOffice</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="<?= lien("home", "liste") ?>">BackOffice</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li>
-                        <a class="nav-link" href="<?= lien("actualites", "liste") ?>">Actualités</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="<?= lien("video", "liste") ?>">Vidéos</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="<?= lien("shorts", "liste") ?>">Shorts</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="<?= lien("utilisateurs", "liste") ?>">Utilisateurs</a>
-                    </li>
-                    <li>
-                        <form method="post">
-                            <input type="hidden" name="action" value="deconnexion">
-                            <button type="submit">Déconnexion</button>
-                        </form>
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="actualitesDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actualités</a>
+                            <div class="dropdown-menu" aria-labelledby="actualitesDropdown">
+                                <a class="dropdown-item" href="<?= lien("actualites", "liste") ?>">Liste</a>
+                                <a class="dropdown-item" href="<?= lien("actualites", "ajouter") ?>">Ajouter</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="videoDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vidéos</a>
+                            <div class="dropdown-menu" aria-labelledby="videoDropdown">
+                                <a class="dropdown-item" href="<?= lien("video", "liste") ?>">Liste</a>
+                                <a class="dropdown-item" href="<?= lien("video", "ajouter") ?>">Ajouter</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="shortsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shorts</a>
+                            <div class="dropdown-menu" aria-labelledby="shortsDropdown">
+                                <a class="dropdown-item" href="<?= lien("shorts", "liste") ?>">Liste</a>
+                                <a class="dropdown-item" href="<?= lien("shorts", "ajouter") ?>">Ajouter</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= lien("utilisateurs", "liste") ?>">Utilisateurs</a>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post">
+                                <input type="hidden" name="action" value="deconnexion">
+                                <button class="btn btn-outline-danger" type="submit">Déconnexion</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>

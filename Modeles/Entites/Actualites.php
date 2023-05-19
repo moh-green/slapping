@@ -8,6 +8,7 @@ class Actualites {
     private $texte;
     private $date;
     private $miniature;
+    private $alt;
 
     /**
      * Get the value of id
@@ -125,6 +126,26 @@ class Actualites {
     public function setMiniature($miniature)
     {
         $this->miniature = $miniature;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of alt
+     */ 
+    public function getAlt()
+    {
+        return $this->alt;
+    }
+
+    /**
+     * Set the value of alt
+     *
+     * @return  self
+     */ 
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
 
         return $this;
     }

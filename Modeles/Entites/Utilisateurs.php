@@ -9,6 +9,12 @@ class Utilisateurs {
     private $mdp;
     private $type;
 
+    public function __construct($id, $email, $mdp) {
+        $this->id = $id;
+        $this->email = $email;
+        $this->mdp = $mdp;
+    }
+
     /**
      * Get the value of id
      */ 
