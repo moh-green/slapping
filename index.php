@@ -225,6 +225,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
     <footer>
         <p>LE FOOTER </p>
     </footer>
-    <script src="assets/js/script.js"></script>
-</body>
+    <section id="connexion" class="display-none">
+        
+        </section>
+        <script src="assets/js/script.js"></script>
+    </body>
 </html>
