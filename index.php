@@ -115,5 +115,8 @@
     <footer>
         <p>LE FOOTER </p>
     </footer>
+    <section id="connexion" class="display-none">
+
+    </section>
 </body>
 </html>
