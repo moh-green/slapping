@@ -7,8 +7,9 @@ use Modeles\Entites\Actualites;
 use Modeles\Entites\Video;
 use Modeles\Entites\Shorts;
 use Modeles\Entites\Utilisateurs;
+use Modeles\Entites\Compte;
 
-abstract class Bdd {
+class Bdd {
     public static function pdo(){
         return new PDO("mysql:host=localhost:3306;dbname=slapping", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     }
@@ -17,8 +18,7 @@ abstract class Bdd {
         return $pdostatement->fetchAll(PDO::FETCH_CLASS, "Modeles\Entites\\" . ucfirst($table) );       
     }
 
-    public static function selectById(string $table, int $id)
-    {
+    public static function selectById(string $table, int $id){
         $pdostatement = self::pdo()->query("SELECT * FROM $table WHERE id = " . $id);
         $pdostatement->setFetchMode(PDO::FETCH_CLASS, "Modeles\Entites\\" . ucfirst($table));
         return $pdostatement->fetch();
@@ -97,14 +97,16 @@ abstract class Bdd {
 
     public static function updateActualites(Actualites $actualites) : bool{
         $texteRequete = "UPDATE actualites
-        SET titre = :titre, soustitre = :soustitre, texte = :texte, miniature = :miniature alt = :alt WHERE id = :id";
+        SET titre = :titre, soustitre = :soustitre, texte = :texte, miniature = :miniature, alt = :alt, date = :date WHERE id = :id";
         $pdostatement = self::pdo()->prepare($texteRequete);
+        $pdostatement->bindValue(":id", $actualites->getId());
         $pdostatement->bindValue(":titre", $actualites->getTitre());
         $pdostatement->bindValue(":soustitre", $actualites->getSoustitre());
         $pdostatement->bindValue(":texte", $actualites->getTexte());
+        $pdostatement->bindValue(":date", $actualites->getDate());
         $pdostatement->bindValue(":miniature", $actualites->getMiniature(),PDO::PARAM_LOB);
         $pdostatement->bindValue(":alt", $actualites->getAlt());
-        $pdostatement->bindValue(":id", $actualites->getId());
+
         return $pdostatement->execute();
     }
 
@@ -112,60 +114,70 @@ abstract class Bdd {
         return self::pdo()->exec("DELETE FROM actualites WHERE id=" . $actualites->getId());
     }
 
-    //UTILISATEURS
+    //Compte
 
-    // public static function getUtilisateurs(Utilisateurs $utilisateurs) {
-    //     $texteRequete = self::pdo()->query("SELECT * FROM utilisateurs WHERE email = ? AND type = 1");
-    //     $texteRequete->execute([$utilisateurs->getEmail()]);
+    public static function creeCompte($nom, $prenom, $email, $mdp){
+        $hash = password_hash($mdp, PASSWORD_DEFAULT);
+        $requete = self::pdo()->prepare("INSERT INTO utilisateurs (nom, prenom, email, mdp) 
+                         VALUES (:nom, :prenom, :email, :mdp)");
+                        
+        $requete->execute([
+            ":nom" => $nom,
+            ":prenom" => $prenom,
+            ":email" => $email,
+            ":mdp" => $hash
+        ]);
 
-    //     $resultat = $texteRequete->fetch(PDO::FETCH_ASSOC);
-
-    //     if ($resultat) {
-    //         $hashedPassword = $resultat["password"];
-    //         if (password_verify($utilisateurs->getMdp(), $hashedPassword)) {
-    //             return new Utilisateurs($resultat['id'], $resultat['email'], $hashedPassword);
-    //         }
-    //     }
-    //     return false;
-    // }
-
-    public static function createAccount(Utilisateurs $utilisateurs){
-        $hash = password_hash($utilisateurs->getMdp(), PASSWORD_DEFAULT);
-        $texteRequete = self::pdo()->prepare("INSERT INTO utilisateurs (email, mdp) 
-                         VALUES (:email, :mdp)");
-
-        $texteRequete->execute([$utilisateurs->getEmail(), $utilisateurs->getMdp() => $hash]);    
     }
-
-    public static function checkEmail($email) {
-        $texteRequete = self::pdo()->prepare('SELECT COUNT(*) FROM utilisateurs WHERE email = ?');
-        $texteRequete->execute([$email]);
-        $count = $texteRequete->fetchColumn();
-        return $count > 0;
-    }
-
-    public static function getUserById(int $id){
-        $texteRequete = self::pdo()->query("SELECT * FROM utilisateurs WHERE id = $id");
-        $texteRequete->execute([$id]);
-
-        return $texteRequete->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public static function getConnexion(Utilisateurs $utilisateurs){
-        $texteRequete = self::pdo()->prepare('SELECT id, email, mdp, type FROM users WHERE email = ?');
-        $texteRequete->execute([$utilisateurs->getEmail()]);
-        $resultat = $texteRequete->fetch();
+    
+    public static function getConnexion(Compte $compte){
+        $requete = self::pdo()->prepare('SELECT id, email, mdp, type FROM utilisateurs WHERE email = ?');
+       $requete->execute([$compte->getEmail()]);
+        $resultat = $requete->fetch();
         
         if ($resultat !== false) {
             $hashedPassword = $resultat['mdp'];
-            if (password_verify($utilisateurs->getMdp(), $hashedPassword)) {
+            if (password_verify($compte->getMdp(), $hashedPassword)) {
                 $_SESSION['type'] = $resultat['type'];
                 $_SESSION['id'] = $resultat['id'];
-                return new Utilisateurs($resultat['id'], $resultat['email'], $hashedPassword, $resultat['type']);
+                return new Compte($resultat['id'], null , null, $resultat['email'],null, $hashedPassword);
             }
         }
         return null;
     }
+    
+    public static function checkEmail($email){
+        $requete = self::pdo()->prepare('SELECT COUNT(*) FROM utilisateurs WHERE email = :email');
+        $requete->bindValue(":email", $email);
+        $requete->execute();
+        $count = $requete->fetchColumn();
+        return $count > 0;
+    }
+    
+    public static function getUserById(int $id){
+        $texteRequete = self::pdo()->prepare("SELECT * FROM utilisateurs WHERE id = :id");
+        $texteRequete->bindValue(":id", $id);
+        $texteRequete->execute();
+        
+        return $texteRequete->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    //UTILISATEURS
+
+    public static function updateUtilisateursBack(Utilisateurs $utilisateurs) : bool{
+        $texteRequete = "UPDATE utilisateurs
+        SET type = :type WHERE id = :id";
+        $pdostatement = self::pdo()->prepare($texteRequete);
+        $pdostatement->bindValue(":type", $utilisateurs->getType());
+        $pdostatement->bindValue(":id", $utilisateurs->getId());
+        
+        return $pdostatement->execute();
+    }
+
+    public static function deleteUtilisateurs(Utilisateurs $utilisateurs){
+        return self::pdo()->exec("DELETE FROM utilisateurs WHERE id=" . $utilisateurs->getId());
+    }
+    
 }
 
 ?>

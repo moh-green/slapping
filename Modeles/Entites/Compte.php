@@ -1,7 +1,7 @@
 <?php 
 
 namespace Modeles\Entites;
-class Utilisateurs {
+class Compte {
     private $id;
     private $nom;
     private $prenom;
@@ -9,6 +9,14 @@ class Utilisateurs {
     private $mdp;
     private $type;
 
+    public function __construct($id, $nom, $prenom, $email, $type, $mdp) {
+        $this->id = $id;
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->email = $email;
+        $this->type = $type;
+        $this->mdp = $mdp;
+    }
 
     /**
      * Get the value of id
@@ -130,3 +138,5 @@ class Utilisateurs {
         return $this;
     }
 }
+
+?>

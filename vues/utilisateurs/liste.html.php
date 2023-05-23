@@ -17,6 +17,7 @@ $fin_utilisateurs = $debut_utilisateurs + $utilisateurs_par_page - 1;
             <th>Nom</th>
             <th>Prenom</th>
             <th>Email</th>
+            <th>Type</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -28,8 +29,12 @@ $fin_utilisateurs = $debut_utilisateurs + $utilisateurs_par_page - 1;
             <td> <?= $utilisateur->getNom() ?> </td>
             <td> <?= $utilisateur->getPrenom() ?> </td>
             <td> <?= $utilisateur->getEmail() ?> </td>
+            <td> <?= $utilisateur->getType() ?> </td>
             <td>
-                <a href="<?= lien("shorts", "supprimer", $short->getId()) ?>">
+                <a href="<?= lien("utilisateurs", "modifier", $utilisateur->getId()) ?>">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a href="<?= lien("utilisateurs", "supprimer", $utilisateur->getId()) ?>">
                     <i class="fa fa-trash"></i>
                 </a>
             </td>

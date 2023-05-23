@@ -57,5 +57,8 @@ $fin_videos = $debut_videos + $videos_par_page - 1;
             <a class="page-link" href="<?= '?controleur=video&page_videos=' . ($page_videos + 1) ?>">Suivant</a>
         </li>
         <?php endif; ?>
+        <li class="page-item">
+            <a class="page-link" href="<?= lien("video", "ajouter") ?>">Ajouter une Video</a>
+        </li>
     </ul>
 </nav>

@@ -63,5 +63,8 @@ $fin_shorts = $debut_shorts + $shorts_par_page - 1;
                 <a class="page-link" href="<?= '?controleur=shorts&page_shorts=' . ($page_shorts + 1) ?>">Suivant</a>
             </li>
         <?php endif; ?>
+        <li class="page-item">
+            <a class="page-link" href="<?= lien("shorts", "ajouter") ?>">Ajouter un Shorts</a>
+        </li>
     </ul>
 </nav>

@@ -83,5 +83,8 @@ $fin_actualites = $debut_actualites + $actualites_par_page - 1;
             <a class="page-link" href="<?= '?controleur=actualites&page_actualites=' . ($page_actualites + 1) ?>">Suivant</a>
         </li>
         <?php endif; ?>
+        <li class="page-item">
+            <a class="page-link" href="<?= lien("actualites", "ajouter") ?>">Ajouter une actualité</a>
+        </li>
     </ul>
 </nav>

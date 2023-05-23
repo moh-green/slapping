@@ -23,7 +23,7 @@
     </ul>
     <form method="post">
         <div class="d-flex justify-content-between">
-            <button class="btn btn-success">Confirmer</button>
+            <button type="submit" class="btn btn-success">Confirmer</button>
             <a href="<?= lien("actualites","liste") ?>" class="btn btn-danger">Annuler</a>
         </div>
     </form>

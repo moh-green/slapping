@@ -23,3 +23,9 @@ function affichage($fichier, $variablesVue = []) {
 function lien($controleur, $methode = "liste", $id = null){
     return "?controleur=$controleur&methode=$methode" . ($id ? "&id=$id" : "");
 }
+
+function access($type){
+    if($_SESSION['type'] !== $type){
+        redirection('index.php');
+    }
+}
