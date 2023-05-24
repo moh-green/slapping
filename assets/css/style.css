@@ -54,6 +54,14 @@
   border: 2px solid var(--input-focus);
   box-shadow: 4px 4px var(--input-focus);
 }
+.popup .popupContent .input::-moz-placeholder {
+  color: var(--font-color-sub);
+  opacity: 0.8;
+}
+.popup .popupContent .input:-ms-input-placeholder {
+  color: var(--font-color-sub);
+  opacity: 0.8;
+}
 .popup .popupContent .input::placeholder {
   color: var(--font-color-sub);
   opacity: 0.8;
@@ -106,6 +114,10 @@
 
 a, h1, h2, h3 {
   font-family: "Sigmar One", cursive;
+}
+
+.display-none {
+  display: none;
 }
 
 body {

@@ -145,9 +145,6 @@ body main article {
   margin-top: 50px;
   width: 100%;
 }
-body main article h2 {
-  margin-left: 50px;
-}
 body main article div {
   display: flex;
   justify-content: space-evenly;

@@ -141,7 +141,10 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                 <iframe width="500" height="250" src="https://www.youtube.com/embed/3HwWcPD8MDI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 <iframe width="500" height="250" src="https://www.youtube.com/embed/vETp_zL0tFg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </article>
-            <p><strong id="connexion-btn" class="connexionPopup" data-popup="#popup-1">Connectez-vous</strong> ou <strong id="inscription-btn" class="inscriptionPopup" data-popup="#popup-2">inscrivez-vous</strong> gratuitement pour voir toutes les vidéos</p>
+            <?php if($estConnecte) { ?> 
+                <?php } else { ?>
+                    <p><strong id="connexion-btn" class="connexionPopup" data-popup="#popup-1">Connectez-vous</strong> ou <strong id="inscription-btn" class="inscriptionPopup" data-popup="#popup-2">inscrivez-vous</strong> gratuitement pour voir toutes les vidéos</p>
+                <?php } ?>
         </section>
         <section id="short">
             <iframe width="259" height="480" src="https://youtube.com/embed/jG5mmQHOBRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -225,9 +228,6 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
     <footer>
         <p>LE FOOTER </p>
     </footer>
-    <section id="connexion" class="display-none">
-        
-        </section>
-        <script src="assets/js/script.js"></script>
+    <script src="assets/js/script.js"></script>
     </body>
 </html>

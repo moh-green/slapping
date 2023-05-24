@@ -35,11 +35,11 @@
                    <input type="search" required>
                    <i class="fa fa-search"></i>
                </form>
-        </article>
+            </article>
        </section>
     </header>
     <main>
-    <article id="music">
+    <article>
         <div>
             <iframe width="500" height="250"  src="https://www.youtube.com/embed/Po1jR-9eNOQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <iframe width="500" height="250"  src="https://www.youtube.com/embed/Po1jR-9eNOQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
