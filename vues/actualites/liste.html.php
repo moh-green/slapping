@@ -42,7 +42,7 @@ $fin_actualites = $debut_actualites + $actualites_par_page - 1;
             </td>
             <td>
                 <?php if ($actu->getMiniature()): ?>
-                    <img src="data:image/jpeg;base64,<?= base64_encode($actu->getMiniature()) ?>" height="150px" width="150px">
+                    <img src="data:image/jpeg;base64,<?= base64_encode($actu->getMiniature()) ?>" height="100px" width="100px">
                 <?php endif ?>
             </td>
             <td>

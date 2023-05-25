@@ -13,6 +13,9 @@
     <li class="list-group-item">
         <strong>Type : </strong> <?= $utilisateurs->getType() ?>
     </li>
+    <li class="list-group-item">
+        <strong>Confirmer : </strong> <?= $utilisateurs->getConfirmer() ?>
+    </li>
 </ul>
 <form method="post">
     <div class="d-flex justify-content-between">

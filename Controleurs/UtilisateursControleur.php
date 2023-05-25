@@ -26,7 +26,7 @@ class UtilisateursControleur{
                     }
                 }
             }
-            affichage("utilisateurs/suppression.html.php", ["utilisateurs" => $utilisateurs]);
+            affichage("utilisateurs/modifier.html.php", ["utilisateurs" => $utilisateurs]);
 
         } catch (\Throwable $th) {
             echo "Erreur lors de la modification un truc ne vas pas.";

@@ -8,10 +8,7 @@
 
 <ul class ="list-group">
     <li class="list-group-item">
-        <strong>Nom : </strong> <?= $utilisateurs->getNom() ?>
-    </li>
-    <li class="list-group-item">
-        <strong>Prénom : </strong> <?= $utilisateurs->getPrenom() ?>
+        <strong>Pseudo : </strong> <?= $utilisateurs->getPseudo() ?>
     </li>
     <li class="list-group-item">
         <strong>Email : </strong> <?= $utilisateurs->getEmail() ?>

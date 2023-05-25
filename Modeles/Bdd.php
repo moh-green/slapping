@@ -24,6 +24,55 @@ class Bdd {
         return $pdostatement->fetch();
     }
 
+    public static function search($search) {
+        $search = '%' . $search . '%';
+        $results = array();
+    
+        // Recherche dans la table "utilisateurs"
+        $pdostatement = self::pdo()->prepare("
+            SELECT id, pseudo, email, 'utilisateurs' AS search, type
+            FROM utilisateurs
+            WHERE pseudo LIKE :search OR email LIKE :search
+        ");
+        $pdostatement->bindValue(":search", $search);
+        $pdostatement->execute();
+        $results = array_merge($results, $pdostatement->fetchAll(PDO::FETCH_ASSOC));
+    
+        // Recherche dans la table "video"
+        $pdostatement = self::pdo()->prepare("
+            SELECT id, nom, genre, lien, 'video' AS search
+            FROM video
+            WHERE nom LIKE :search OR genre LIKE :search
+        ");
+        $pdostatement->bindValue(":search", $search);
+        $pdostatement->execute();
+        $results = array_merge($results, $pdostatement->fetchAll(PDO::FETCH_ASSOC));
+    
+        // Recherche dans la table "shorts"
+        $pdostatement = self::pdo()->prepare("
+            SELECT id, nom, genre, lien, 'shorts' AS search
+            FROM shorts
+            WHERE nom LIKE :search OR genre LIKE :search
+        ");
+        $pdostatement->bindValue(":search", $search);
+        $pdostatement->execute();
+        $results = array_merge($results, $pdostatement->fetchAll(PDO::FETCH_ASSOC));
+    
+        // Recherche dans la table "actualites"
+        $pdostatement = self::pdo()->prepare("
+            SELECT id, titre, soustitre, texte, miniature, alt, 'actualites' AS search
+            FROM actualites
+            WHERE titre LIKE :search OR soustitre LIKE :search OR texte LIKE :search
+        ");
+        $pdostatement->bindValue(":search", $search);
+        $pdostatement->execute();
+        $results = array_merge($results, $pdostatement->fetchAll(PDO::FETCH_ASSOC));
+    
+        return $results;
+    }
+    
+    
+
     //VIDEO
 
     public static function insertVideo(Video $video){
@@ -50,6 +99,16 @@ class Bdd {
     
     public static function deleteVideo(Video $video){
         return self::pdo()->exec("DELETE FROM video WHERE id=" . $video->getId());
+    }
+
+    public static function searchVideos($search){
+        $search = '%' . $search . '%';
+        $texteRequete = "SELECT * FROM video WHERE nom LIKE :search OR genre LIKE :search";
+        $pdostatement = self::pdo()->prepare($texteRequete);
+        $pdostatement->bindValue(":search", $search);
+        $pdostatement->execute();
+
+        return $pdostatement->fetchAll();
     }
 
     //SHORTS
@@ -116,34 +175,55 @@ class Bdd {
 
     //Compte
 
-    public static function creeCompte($nom, $prenom, $email, $mdp){
+    public static function creeCompte($pseudo, $email, $mdp, $cle){
         $hash = password_hash($mdp, PASSWORD_DEFAULT);
-        $requete = self::pdo()->prepare("INSERT INTO utilisateurs (nom, prenom, email, mdp) 
-                         VALUES (:nom, :prenom, :email, :mdp)");
-                        
-        $requete->execute([
-            ":nom" => $nom,
-            ":prenom" => $prenom,
-            ":email" => $email,
-            ":mdp" => $hash
-        ]);
+        $requete = self::pdo()->prepare("INSERT INTO utilisateurs (pseudo, email, mdp, cle, confirmer) 
+                         VALUES (:pseudo, :email, :mdp, :cle, 0)");
+        $requete->bindValue(":pseudo", $pseudo);
+        $requete->bindValue(":email", $email);
+        $requete->bindValue(":mdp", $hash);
+        $requete->bindValue(":cle", $cle);
+
+        return $requete->execute();
 
     }
     
     public static function getConnexion(Compte $compte){
-        $requete = self::pdo()->prepare('SELECT id, email, mdp, type FROM utilisateurs WHERE email = ?');
-       $requete->execute([$compte->getEmail()]);
-        $resultat = $requete->fetch();
+        $requete = self::pdo()->prepare('SELECT * FROM utilisateurs WHERE email = ?');
+        $requete->execute([$compte->getEmail()]);
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
         
         if ($resultat !== false) {
             $hashedPassword = $resultat['mdp'];
             if (password_verify($compte->getMdp(), $hashedPassword)) {
-                $_SESSION['type'] = $resultat['type'];
-                $_SESSION['id'] = $resultat['id'];
-                return new Compte($resultat['id'], null , null, $resultat['email'],null, $hashedPassword);
+                if ($resultat['confirmer'] == 1) {
+                    $_SESSION['id'] = $resultat['id'];
+                    $_SESSION['pseudo'] = $resultat['pseudo'];
+                    $_SESSION['email'] = $resultat['email'];
+                    $_SESSION['type'] = $resultat['type'];
+                    
+                    return new Compte($resultat['id'], $resultat['confirmer'], $resultat['pseudo'], $resultat['email'], $resultat['type'], $hashedPassword, $resultat['cle']);
+                } else {
+                    // Compte non confirmé
+                    return new Compte($resultat['id'], $resultat['confirmer'], $resultat['pseudo'], $resultat['email'], $resultat['type'], $hashedPassword, $resultat['cle']);
+                }
+            } else {
+                // Mot de passe invalide
+                return null;
             }
         }
+        
+        // Nom d'utilisateur ou mot de passe invalide
         return null;
+    }
+    
+    
+    public static function checkPseudo($pseudo){
+        $requete = self::pdo()->prepare('SELECT COUNT(*) FROM utilisateurs WHERE pseudo = :pseudo');
+        $requete->bindValue(":pseudo", $pseudo);
+        $requete->execute();
+        $count = $requete->fetchColumn();
+        return $count > 0;
     }
     
     public static function checkEmail($email){
@@ -162,6 +242,26 @@ class Bdd {
         return $texteRequete->fetch(PDO::FETCH_ASSOC);
     }
     
+    public static function recupUtilisateur($email){
+        $requete = self::pdo()->prepare('SELECT id FROM utilisateurs WHERE email = ?');
+        $requete->bindValue(":email", $email);
+        $requete->execute([$email]);
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+    
+        if ($resultat !== false) {
+            return $resultat['id'];
+        }
+        
+        return null;
+    }   
+
+    public static function confirmerCompte($id, $cle){
+        $texteRequete = self::pdo()->prepare("UPDATE utilisateurs SET confirmer = 1 WHERE id = :id AND cle = :cle");
+        $texteRequete->bindValue(":id", $id);
+        $texteRequete->bindValue(":cle", $cle);
+        
+        return $texteRequete->execute();
+    }
     //UTILISATEURS
 
     public static function updateUtilisateursBack(Utilisateurs $utilisateurs) : bool{

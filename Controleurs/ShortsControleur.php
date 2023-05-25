@@ -9,6 +9,7 @@ class ShortsControleur{
     public function liste(){
         $shorts = Bdd::select("shorts");
         affichage("shorts/liste.html.php", ["shorts" => $shorts]);
+
     }
 
     public function ajouter(){

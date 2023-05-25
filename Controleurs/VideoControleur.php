@@ -7,8 +7,10 @@ use Modeles\Entites\Video;
 
 class VideoControleur{
     public function liste(){
-        $video = Bdd::select("video");
-        affichage("video/liste.html.php", ["video" => $video]);
+        $search = isset($_GET['search']) ? $_GET['search'] : '';
+        $videos = $search ? Bdd::searchVideos($search) : Bdd::select("video");
+        affichage("video/liste.html.php", ["video" => $videos]);
+    
     }
 
     public function ajouter(){

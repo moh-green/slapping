@@ -2,20 +2,19 @@
 
 include 'includes/init.inc.php';
 
-session_start();
+gererSession();
 var_dump($_SESSION);
+var_dump($_SESSION['pseudo']);
 
 use Controleurs\CompteControleur;
 $utilisateursControleur = new CompteControleur;
 
-if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['mdp'])) {
-    $utilisateursControleur->creeCompte($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['mdp']);
+if(isset($_POST['pseudo']) && isset($_POST['email']) && isset($_POST['mdp'])) {
+    $utilisateursControleur->creeCompte($_POST['pseudo'], $_POST['email'], $_POST['mdp']);
 }
 
-if(isset($_POST['email'])&&isset($_POST['mdp'])){
-    $email=$_POST['email'];
-    $mdp=$_POST['mdp'];
-    $utilisateursControleur->connexion($email, $mdp);
+if(isset($_POST['email']) && isset($_POST['mdp'])) {
+    $utilisateursControleur->connexion();
 }
 
 $estConnecte = $utilisateursControleur->estConnecte();
@@ -61,6 +60,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                         <a class="connexionPopup" data-popup="#popup-1">Connexion</a>
                     </form>
                 <?php } ?>
+                <?php if($estConnecte && isset($_SESSION['pseudo'])) { ?> 
+                    <p>Bonjour <?= $_SESSION['pseudo'] ?></p>
+                <?php } ?>
             </ul>
         </nav>
     </header>
@@ -94,8 +96,7 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                         <div class="titre">
                             <h2>Bienvenue,</h2>
                             <p>inscrivez-vous pour continuer</p>
-                            <input type="text" placeholder="Votre Prénom" name="prenom" class="input">
-                            <input type="text" placeholder="Votre Nom" name="nom" class="input">
+                            <input type="text" placeholder="Votre Pseudo" name="pseudo" class="input">
                             <input type="email" placeholder="Votre Email" name="email" class="input">
                             <input type="password" placeholder="Votre Mot de Passe" name="mdp" class="input">
                             <input type="password" placeholder="Confirmer votre Mot de Passe" name="confirm_mdp" class="input">
@@ -227,7 +228,7 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
     </footer>
     <section id="connexion" class="display-none">
         
-        </section>
-        <script src="assets/js/script.js"></script>
+    </section>
+    <script src="assets/js/script.js"></script>
     </body>
 </html>

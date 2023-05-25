@@ -3,19 +3,21 @@
 namespace Modeles\Entites;
 class Compte {
     private $id;
-    private $nom;
-    private $prenom;
+    private $pseudo;
     private $email;
-    private $mdp;
     private $type;
+    private $mdp;
+    private $confirmer;
+    private $cle;
 
-    public function __construct($id, $nom, $prenom, $email, $type, $mdp) {
+    public function __construct($id, $pseudo, $email, $type, $mdp, $confirmer, $cle) {
         $this->id = $id;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
+        $this->pseudo = $pseudo;
         $this->email = $email;
         $this->type = $type;
         $this->mdp = $mdp;
+        $this->confirmer = $confirmer;
+        $this->cle = $cle;
     }
 
     /**
@@ -34,46 +36,6 @@ class Compte {
     public function setId($id)
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of nom
-     */ 
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * Set the value of nom
-     *
-     * @return  self
-     */ 
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of prenom
-     */ 
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
-
-    /**
-     * Set the value of prenom
-     *
-     * @return  self
-     */ 
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
 
         return $this;
     }
@@ -134,6 +96,66 @@ class Compte {
     public function setType($type)
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of pseudo
+     */ 
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
+
+    /**
+     * Set the value of pseudo
+     *
+     * @return  self
+     */ 
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cle
+     */ 
+    public function getCle()
+    {
+        return $this->cle;
+    }
+
+    /**
+     * Set the value of cle
+     *
+     * @return  self
+     */ 
+    public function setCle($cle)
+    {
+        $this->cle = $cle;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of confirmer
+     */ 
+    public function getConfirmer()
+    {
+        return $this->confirmer;
+    }
+
+    /**
+     * Set the value of confirmer
+     *
+     * @return  self
+     */ 
+    public function setConfirmer($confirmer)
+    {
+        $this->confirmer = $confirmer;
 
         return $this;
     }
