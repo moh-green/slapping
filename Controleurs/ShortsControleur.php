@@ -11,6 +11,12 @@ class ShortsControleur{
         affichage("shorts/liste.html.php", ["shorts" => $shorts]);
 
     }
+    public function listeUser(){
+        return $shorts = Bdd::select("shorts");
+    }
+    public function filtrerCategorie($categorie) {
+        return $shorts = Bdd::selectByGenre("shorts" , $categorie);
+    }
 
     public function ajouter(){
         if ($_POST) {

@@ -18,6 +18,10 @@ class Bdd {
         $pdostatement = self::pdo()->query("SELECT * FROM $table");
         return $pdostatement->fetchAll(PDO::FETCH_CLASS, "Modeles\Entites\\" . ucfirst($table) );       
     }
+    public static function selectByGenre(string $table, $genre){
+        $pdostatement = self::pdo()->query("SELECT * FROM $table WHERE genre = '" . $genre . "'");
+        return $pdostatement->fetchAll(PDO::FETCH_CLASS, "Modeles\Entites\\" . ucfirst($table) );       
+    }
 
     public static function selectById(string $table, int $id){
         $pdostatement = self::pdo()->query("SELECT * FROM $table WHERE id = " . $id);

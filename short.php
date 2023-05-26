@@ -1,3 +1,32 @@
+<?php 
+
+include 'includes/init.inc.php';
+
+use Controleurs\ShortsControleur;
+$shorts = new ShortsControleur;
+$listeShort = $shorts->listeUser();
+
+if (isset($_POST['musique'])) {
+   $listeShort = $shorts->filtrerCategorie('music');
+} elseif (isset($_POST['sport'])) {
+   $listeShort = $shorts->filtrerCategorie('sport');
+} elseif (isset($_POST['business'])) {
+   $listeShort = $shorts->filtrerCategorie('business');
+}
+
+
+$shorts_par_page = 2;
+// calculer le nombre total de pages pour les shorts
+$pages_shorts = ceil(count($listeShort) / $shorts_par_page);
+
+// récupérer le numéro de page à afficher pour les shorts
+$page_shorts = isset($_GET['page_shorts']) ? $_GET['page_shorts'] : 1;
+
+// déterminer les indices de début et de fin pour les shorts à afficher sur la page courante
+$debut_shorts = ($page_shorts - 1) * $shorts_par_page;
+$fin_shorts = $debut_shorts + $shorts_par_page - 1;
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -25,12 +54,11 @@
        </nav> 
        <section>
            <article id="filter">
-               <div>Musique</div>
-                <div>Comedy</div>
-               <div>Mode</div>
-               <div>business</div>
-               <div>cinema</div>
-               <div>sport</div>
+                <form method="post" action="short.php">
+                    <input type="submit" name="musique" value="Musique">
+                    <input type="submit" name="sport" value="Sport">
+                    <input type="submit" name="business" value="Business">
+                </form>
                <form action="">
                    <input type="search" required>
                    <i class="fa fa-search"></i>
@@ -41,26 +69,33 @@
     <main>
         <article>
             <div>
-            <iframe width="259" height="480" src="https://youtube.com/embed/jG5mmQHOBRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="259" height="480" src="https://youtube.com/embed/lt-5jNt3vcI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="259" height="480" src="https://youtube.com/embed/y5AaEijuogU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="259" height="480" src="https://youtube.com/embed/KJMkBVaAV8g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="259" height="480" src="https://youtube.com/embed/jG5mmQHOBRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="259" height="480" src="https://youtube.com/embed/lt-5jNt3vcI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="259" height="480" src="https://youtube.com/embed/y5AaEijuogU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="259" height="480" src="https://youtube.com/embed/KJMkBVaAV8g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="259" height="480" src="https://youtube.com/embed/jG5mmQHOBRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="259" height="480" src="https://youtube.com/embed/lt-5jNt3vcI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="259" height="480" src="https://youtube.com/embed/y5AaEijuogU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe width="259" height="480" src="https://youtube.com/embed/KJMkBVaAV8g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <?php for ($i = $debut_shorts; $i <= $fin_shorts && $i < count($listeShort); $i++): ?>
+            <?php $short = $listeShort[$i]; ?>
+                        <iframe width="259" height="480" src="<?php echo $short->getLien() ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <?php endfor; ?>
             </div>
         </article>
-        
-        <div id="page-num">
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-        </div>
+        <nav aria-label="Pagination">
+            <ul id="page-num">
+                <?php if ($page_shorts > 1): ?>
+                    <li>
+                        <a href="<?= '?controleur=shorts&page_shorts=' . ($page_shorts - 1) ?>">Précédent</a>
+                    </li>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $pages_shorts; $i++): ?>
+                    <li class="page-item <?= ($i == $page_shorts) ? 'active' : '' ?>">
+                        <a href="<?= '?controleur=shorts&page_shorts=' . $i ?>"><?= $i ?></a>
+                    </li>
+                <?php endfor; ?>
+
+                <?php if ($page_shorts < $pages_shorts): ?>
+                    <li>
+                        <a href="<?= '?controleur=shorts&page_shorts=' . ($page_shorts + 1) ?>">Suivant</a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </nav>
     </main>
     <footer>
         <p>LE FOOTER </p>
