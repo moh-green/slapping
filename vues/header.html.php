@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <div class="container">
+<div class="container">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" href="<?= lien("home", "liste") ?>">BackOffice</a>
@@ -59,12 +59,26 @@
                             <a class="nav-link" href="<?= lien("utilisateurs", "liste") ?>">Utilisateurs</a>
                         </li>
                         <li class="nav-item">
-                            <form method="post">
-                                <input type="hidden" name="action" value="deconnexion">
-                                <button class="btn btn-outline-danger" type="submit">Déconnexion</button>
+                        <form action="back.php" method="post">
+                                <div class="input-group">
+                                    <div class="form-outline">
+                                        <input type="search" id="form1" class="form-control" name="search" />
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
                             </form>
                         </li>
                     </ul>
+                    <div class="ml-auto"> 
+                        <form method="post">
+                            <input type="hidden" name="action" value="deconnexion">
+                            <button class="btn btn-outline-danger" type="submit">Déconnexion</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>
+    

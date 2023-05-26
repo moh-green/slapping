@@ -29,3 +29,28 @@ function access($type){
         redirection('index.php');
     }
 }
+
+function gererSession() {
+    // Durée de vie de la session en secondes (10 minutes)
+    $sessionLifetime = 600;
+
+    // Définit la durée de vie du cookie de session
+    session_set_cookie_params($sessionLifetime);
+
+    // Démarre la session
+    session_start();
+
+    // Vérifie si l'utilisateur est inactif depuis plus de 10 minutes
+    if (isset($_SESSION['lastActivity']) && (time() - $_SESSION['lastActivity']) > $sessionLifetime) {
+        // Détruit la session et redirige vers la page de déconnexion
+        session_destroy();
+        header('Location: logout.php');
+        exit();
+    }
+
+    // Actualise le délai d'expiration de la session
+    session_regenerate_id(true);
+
+    // Met à jour le temps de la dernière activité
+    $_SESSION['lastActivity'] = time();
+}

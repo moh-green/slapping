@@ -14,10 +14,10 @@ $fin_utilisateurs = $debut_utilisateurs + $utilisateurs_par_page - 1;
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
-            <th>Nom</th>
-            <th>Prenom</th>
+            <th>Pseudo</th>
             <th>Email</th>
             <th>Type</th>
+            <th>Confirmer</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -26,10 +26,10 @@ $fin_utilisateurs = $debut_utilisateurs + $utilisateurs_par_page - 1;
         <?php $utilisateur = $utilisateurs[$i]; ?>
         <tr>
             <td> <?= $utilisateur->getId() ?> </td>
-            <td> <?= $utilisateur->getNom() ?> </td>
-            <td> <?= $utilisateur->getPrenom() ?> </td>
+            <td> <?= $utilisateur->getPseudo() ?> </td>
             <td> <?= $utilisateur->getEmail() ?> </td>
             <td> <?= $utilisateur->getType() ?> </td>
+            <td> <?= $utilisateur->getConfirmer() ?> </td>
             <td>
                 <a href="<?= lien("utilisateurs", "modifier", $utilisateur->getId()) ?>">
                     <i class="fa fa-edit"></i>
