@@ -5,13 +5,15 @@ include 'includes/init.inc.php';
 use Controleurs\ShortsControleur;
 $shorts = new ShortsControleur;
 $listeShort = $shorts->listeUser();
-
+$listeShortSearch = array();
 if (isset($_POST['musique'])) {
    $listeShort = $shorts->filtrerCategorie('music');
 } elseif (isset($_POST['sport'])) {
    $listeShort = $shorts->filtrerCategorie('sport');
 } elseif (isset($_POST['business'])) {
    $listeShort = $shorts->filtrerCategorie('business');
+}elseif (isset($_POST['search'])) {
+   $listeShortSearch = $shorts->searchShort();
 }
 
 
@@ -55,13 +57,16 @@ $fin_shorts = $debut_shorts + $shorts_par_page - 1;
        <section>
            <article id="filter">
                 <form method="post" action="short.php">
-                    <input type="submit" name="musique" value="Musique">
-                    <input type="submit" name="sport" value="Sport">
-                    <input type="submit" name="business" value="Business">
+                    <input class="btn-filter" type="submit" name="musique" value="Musique">
+                    <input class="btn-filter" type="submit" name="sport" value="Sport">
+                    <input class="btn-filter" type="submit" name="business" value="Business">
                 </form>
-               <form action="">
-                   <input type="search" required>
-                   <i class="fa fa-search"></i>
+               <form action="short.php" method="post" class="search-bar">
+                    <label for="search"></label>
+                   <input type="text" name="search" id="search"required class="search-bar-input">
+                    <button type="submit" class="fa fa-search">
+                        
+                   </button>
                </form>
             </article>
        </section>
@@ -69,10 +74,19 @@ $fin_shorts = $debut_shorts + $shorts_par_page - 1;
     <main>
         <article>
             <div>
+                <?php
+                if (isset($_POST['search'])) {
+                    foreach ($listeShortSearch as $result) {
+                        ?>
+                        <iframe width="259" height="480" src="<?php echo $result['lien'] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <?php
+                    }  
+                } else{
+                ?>
             <?php for ($i = $debut_shorts; $i <= $fin_shorts && $i < count($listeShort); $i++): ?>
             <?php $short = $listeShort[$i]; ?>
                         <iframe width="259" height="480" src="<?php echo $short->getLien() ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <?php endfor; ?>
+            <?php endfor; }?>
             </div>
         </article>
         <nav aria-label="Pagination">

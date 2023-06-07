@@ -29,41 +29,35 @@ class Bdd {
         return $pdostatement->fetch();
     }
 
-    public static function search($search) {
+    public static function search($type, $search) {
         $search = '%' . $search . '%';
         $results = array();
     
-        // Recherche dans la table "utilisateurs"
-        $pdostatement = self::pdo()->prepare("
-            SELECT id, pseudo, email, 'utilisateurs' AS search, type
-            FROM utilisateurs
-            WHERE pseudo LIKE :search OR email LIKE :search
-        ");
-        $pdostatement->bindValue(":search", $search);
-        $pdostatement->execute();
-        $results = array_merge($results, $pdostatement->fetchAll(PDO::FETCH_ASSOC));
+
+        if($type == 'video'){
+            // Recherche dans la table "video"
+            $pdostatement = self::pdo()->prepare("
+                SELECT id, nom, genre, lien, 'video' AS search
+                FROM video
+                WHERE nom LIKE :search OR genre LIKE :search
+            ");
+            $pdostatement->bindValue(":search", $search);
+            $pdostatement->execute();
+            $results = array_merge($results, $pdostatement->fetchAll(PDO::FETCH_ASSOC));
+        }elseif ($type == 'shorts') {
+            // Recherche dans la table "shorts"
+            $pdostatement = self::pdo()->prepare("
+                SELECT id, nom, genre, lien, 'shorts' AS search
+                FROM shorts
+                WHERE nom LIKE :search OR genre LIKE :search
+            ");
+            $pdostatement->bindValue(":search", $search);
+            $pdostatement->execute();
+            $results = array_merge($results, $pdostatement->fetchAll(PDO::FETCH_ASSOC));
+        }
     
-        // Recherche dans la table "video"
-        $pdostatement = self::pdo()->prepare("
-            SELECT id, nom, genre, lien, 'video' AS search
-            FROM video
-            WHERE nom LIKE :search OR genre LIKE :search
-        ");
-        $pdostatement->bindValue(":search", $search);
-        $pdostatement->execute();
-        $results = array_merge($results, $pdostatement->fetchAll(PDO::FETCH_ASSOC));
     
-        // Recherche dans la table "shorts"
-        $pdostatement = self::pdo()->prepare("
-            SELECT id, nom, genre, lien, 'shorts' AS search
-            FROM shorts
-            WHERE nom LIKE :search OR genre LIKE :search
-        ");
-        $pdostatement->bindValue(":search", $search);
-        $pdostatement->execute();
-        $results = array_merge($results, $pdostatement->fetchAll(PDO::FETCH_ASSOC));
-    
-        // Recherche dans la table "actualites"
+       /*
         $pdostatement = self::pdo()->prepare("
             SELECT id, titre, soustitre, texte, miniature, alt, 'actualites' AS search
             FROM actualites
@@ -72,8 +66,9 @@ class Bdd {
         $pdostatement->bindValue(":search", $search);
         $pdostatement->execute();
         $results = array_merge($results, $pdostatement->fetchAll(PDO::FETCH_ASSOC));
-    
+        */
         return $results;
+        
     }
     
     

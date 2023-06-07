@@ -17,6 +17,10 @@ class ShortsControleur{
     public function filtrerCategorie($categorie) {
         return $shorts = Bdd::selectByGenre("shorts" , $categorie);
     }
+    public function searchShort(){
+        $search = $_POST['search'];
+        return $shorts = Bdd::search('shorts', $search);
+    }
 
     public function ajouter(){
         if ($_POST) {
