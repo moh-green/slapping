@@ -130,7 +130,7 @@ body header section #filter .btn-filter {
   color: #FED500;
   border-radius: 10px;
   margin: 15px;
-  font-size: larger;
+  font-size: 17px;
   font-weight: 700;
   background-color: #8664e3;
   box-shadow: 0px 0px 1px 1px #FED500;
@@ -193,14 +193,25 @@ body main #page-num a:hover {
   cursor: pointer;
 }
 body footer {
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-  margin-top: 50px;
-  height: 100px;
+  margin-top: 200px;
+  min-height: 100px;
+  padding-top: 20px;
   background-color: #8664e3;
   color: #FED500;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+body footer section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+body footer section img {
+  margin: 20px;
+  width: 50px;
+}
+body footer section img:hover {
+  cursor: pointer;
 }

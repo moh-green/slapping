@@ -12,6 +12,16 @@ class VideoControleur{
         affichage("video/liste.html.php", ["video" => $videos]);
     
     }
+    public function listeUser(){
+        return $videos = Bdd::select("video");
+    }
+    public function filtrerCategorie($categorie) {
+        return $videos = Bdd::selectByGenre("video" , $categorie);
+    }
+    public function searchVideo(){
+        $search = $_POST['search'];
+        return $videos = Bdd::search('video', $search);
+    }
 
     public function ajouter(){
         if ($_POST) {

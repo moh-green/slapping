@@ -17,7 +17,7 @@ if (isset($_POST['musique'])) {
 }
 
 
-$shorts_par_page = 2;
+$shorts_par_page = 4;
 // calculer le nombre total de pages pour les shorts
 $pages_shorts = ceil(count($listeShort) / $shorts_par_page);
 
@@ -51,7 +51,7 @@ $fin_shorts = $debut_shorts + $shorts_par_page - 1;
                 <li><a href="video.php">Vidéos</a></li>
                 <li><a href="short.php" id="header-video">Short</a></li>
                 <li><a href="actualite.php">Actualités</a></li>
-                <li><a href="contact.php">Contact</a></li>
+                <li><a href="contact.php">À propos</a></li>
               </ul>
        </nav> 
        <section>
@@ -89,6 +89,8 @@ $fin_shorts = $debut_shorts + $shorts_par_page - 1;
             <?php endfor; }?>
             </div>
         </article>
+        <?php if (!isset($_POST['search'])){
+        ?>
         <nav aria-label="Pagination">
             <ul id="page-num">
                 <?php if ($page_shorts > 1): ?>
@@ -110,9 +112,18 @@ $fin_shorts = $debut_shorts + $shorts_par_page - 1;
                 <?php endif; ?>
             </ul>
         </nav>
+
+        <?php
+        }
+        ?>
     </main>
     <footer>
-        <p>LE FOOTER </p>
+        <p>Slapping - Le média qui claque</p>
+        <section>
+            <img src="assets/img/facebook.png" alt="">
+            <img src="assets/img/instagram.png" alt="">
+            <img src="assets/img/youtube.png" alt="">
+        </section>
     </footer>
 </body>
 </html>
