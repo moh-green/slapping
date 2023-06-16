@@ -58,10 +58,6 @@
   color: var(--font-color-sub);
   opacity: 0.8;
 }
-.popup .popupContent .input:-ms-input-placeholder {
-  color: var(--font-color-sub);
-  opacity: 0.8;
-}
 .popup .popupContent .input::placeholder {
   color: var(--font-color-sub);
   opacity: 0.8;

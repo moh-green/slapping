@@ -11,8 +11,8 @@ use Modeles\Entites\Compte;
 
 class Bdd {
     public static function pdo(){
-        //return new PDO("mysql:host=localhost:3306;dbname=slapping", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        return new \PDO("mysql:unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock;dbname=slapping","root","root", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ]);
+        return new PDO("mysql:host=localhost:3306;dbname=slapping", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        // return new \PDO("mysql:unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock;dbname=slapping","root","root", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ]);
     }
     public static function select(string $table){
         $pdostatement = self::pdo()->query("SELECT * FROM $table");
@@ -279,5 +279,3 @@ class Bdd {
     }
     
 }
-
-?>
