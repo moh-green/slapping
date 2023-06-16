@@ -1,23 +1,61 @@
 <?php 
-
+session_start();
 include 'includes/init.inc.php';
 
 use Controleurs\ShortsControleur;
 $shorts = new ShortsControleur;
-$listeShort = $shorts->listeUser();
 $listeShortSearch = array();
+if (!isset($_SESSION['categorie-short'])) {
+    $_SESSION['categorie-short'] = '';
+}
+
+if ($_SESSION['categorie-short'] == 'music') {
+    $listeShort = $shorts->filtrerCategorie('music');
+} elseif ($_SESSION['categorie-short'] == 'sport') {
+    $listeShort = $shorts->filtrerCategorie('sport');
+} elseif ($_SESSION['categorie-short'] == 'business') {
+    $listeShort = $shorts->filtrerCategorie('business');
+}else{
+    $listeShort = $shorts->listeUser();
+}
+
+
+
 if (isset($_POST['musique'])) {
-   $listeShort = $shorts->filtrerCategorie('music');
+    if ($_SESSION['categorie-short'] == 'music') {
+        $listeShort = $shorts->listeUser();
+        $_SESSION['categorie-short'] = '';
+    }else{
+        $listeShort = $shorts->filtrerCategorie('music');
+        $_SESSION['categorie-short'] = 'music';
+    }
 } elseif (isset($_POST['sport'])) {
-   $listeShort = $shorts->filtrerCategorie('sport');
+    if ($_SESSION['categorie-short'] == 'sport') {
+        $listeShort = $shorts->listeUser();
+        $_SESSION['categorie-short'] = '';
+    }else{
+        $listeShort = $shorts->filtrerCategorie('sport');
+        $_SESSION['categorie-short'] = 'sport';
+    }
 } elseif (isset($_POST['business'])) {
-   $listeShort = $shorts->filtrerCategorie('business');
-}elseif (isset($_POST['search'])) {
+    if ($_SESSION['categorie-short'] == 'business') {
+        $listeShort = $shorts->listeUser();
+        $_SESSION['categorie-short'] = '';
+    }else{
+        $listeShort = $shorts->filtrerCategorie('business');
+        $_SESSION['categorie-short'] = 'business';
+    }
+}elseif (isset($_POST['all'])) {
+    $listeShort = $shorts->listeUser();
+    $_SESSION['categorie-short'] = '';
+}
+
+elseif (isset($_POST['search'])) {
    $listeShortSearch = $shorts->searchShort();
 }
 
 
-$shorts_par_page = 4;
+$shorts_par_page = 2;
 // calculer le nombre total de pages pour les shorts
 $pages_shorts = ceil(count($listeShort) / $shorts_par_page);
 
@@ -57,9 +95,10 @@ $fin_shorts = $debut_shorts + $shorts_par_page - 1;
        <section>
            <article id="filter">
                 <form method="post" action="short.php">
-                    <input class="btn-filter" type="submit" name="musique" value="Musique">
-                    <input class="btn-filter" type="submit" name="sport" value="Sport">
-                    <input class="btn-filter" type="submit" name="business" value="Business">
+                    <input class="btn-filter" type="submit" name="all" value="Tous">
+                    <input class=" <?php echo $music = ($_SESSION['categorie-short'] == 'music') ? "cliked" : "btn-filter" ?>" type="submit" name="musique" value="Musique">
+                    <input class=" <?php echo $sport = ($_SESSION['categorie-short'] == 'sport') ? "cliked" : "btn-filter"  ?>" type="submit" name="sport" value="Sport">
+                    <input class=" <?php echo $business = ($_SESSION['categorie-short'] == 'business') ? "cliked" : "btn-filter"  ?>" type="submit" name="business" value="Business">
                 </form>
                <form action="short.php" method="post" class="search-bar">
                     <label for="search"></label>
