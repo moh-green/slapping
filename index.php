@@ -5,8 +5,8 @@ include 'includes/header.php';
 include 'includes/nav.php';
 
 gererSession();
-var_dump($_SESSION);
-var_dump($_SESSION['pseudo']);
+// var_dump($_SESSION);
+// var_dump($_SESSION['pseudo']);
 
 use Controleurs\CompteControleur;
 
@@ -165,9 +165,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                 <h2>Nouveautés</h2>
             </div>
             <article class="horizontal-list" id="nouveaute-video">
-                <iframe max-width="500" max-height="250" src="https://www.youtube.com/embed/Po1jR-9eNOQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <iframe max-width="500" max-height="250" src="https://www.youtube.com/embed/3HwWcPD8MDI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <iframe max-width="500" max-height="250" src="https://www.youtube.com/embed/vETp_zL0tFg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe class="video" max-width="500" max-height="250" src="https://www.youtube.com/embed/Po1jR-9eNOQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe class="video" max-width="500" max-height="250" src="https://www.youtube.com/embed/3HwWcPD8MDI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe class="video" max-width="500" max-height="250" src="https://www.youtube.com/embed/vETp_zL0tFg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </article>
             <button>
                 <p>Voir plus</p>
@@ -177,12 +177,24 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
             <div class="title big-title" id="short-title">
                 <h2>Shorts</h2>
             </div>
-            <article class="horizontal-list">
-                <iframe width="259" height="480" src="https://youtube.com/embed/jG5mmQHOBRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe width="259" height="480" src="https://youtube.com/embed/jG5mmQHOBRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe width="259" height="480" src="https://youtube.com/embed/lt-5jNt3vcI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe width="259" height="480" src="https://youtube.com/embed/y5AaEijuogU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <iframe width="259" height="480" src="https://youtube.com/embed/KJMkBVaAV8g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <article class="horizontal-list carousel">
+                <ul class="carousel__list">
+                    <li class="carousel__item " data-pos="-2">
+                        <iframe class="short" width="100%" height="100%" src="https://youtube.com/embed/jG5mmQHOBRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </li>
+                    <li class="carousel__item" data-pos="-1">
+                        <iframe class="short" width="100%" height="100%" src="https://youtube.com/embed/jG5mmQHOBRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </li>
+                    <li class="carousel__item" data-pos="0">
+                        <iframe class="short" width="100%" height="100%" src="https://youtube.com/embed/lt-5jNt3vcI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </li>
+                    <li class="carousel__item" data-pos="1">
+                        <iframe class="short" width="100%" height="100%" src="https://youtube.com/embed/y5AaEijuogU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </li>
+                    <li class="carousel__item" data-pos="2">
+                        <iframe class="short" width="100%" height="100%" src="https://youtube.com/embed/KJMkBVaAV8g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </li>
+                </ul>
             </article>
             <button>
                 <p>Voir plus</p>
@@ -202,9 +214,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                         <h3>Music</h3>
                     </div>
                     <div class="horizontal-list">
-                        <iframe width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </article>
                 <article class="vertical-list">
@@ -212,9 +224,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                         <h3>Sport</h3>
                     </div>
                     <div class="horizontal-list">
-                        <iframe width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </article>
                 <article class="vertical-list">
@@ -222,19 +234,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                         <h3>Humour</h3>
                     </div>
                     <div class="horizontal-list">
-                        <iframe width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                </article>
-                <article class="vertical-list">
-                    <div class="title big-title">
-                        <h3>Mode</h3>
-                    </div>
-                    <div class="horizontal-list">
-                        <iframe width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </article>
             </section>
@@ -279,14 +281,25 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
         </section>
     </main>
     <footer>
-        <p>Slapping - Le média qui claque</p>
         <section>
-            <img src="assets/img/facebook.png" alt="">
-            <img src="assets/img/instagram.png" alt="">
-            <img src="assets/img/youtube.png" alt="">
+            <img src="assets/img/logo.png" alt="" id="logo">
+            <ul>
+                <li>
+                    <img src="assets/img/facebook.png" alt="">
+                </li>
+                <li>
+                    <img src="assets/img/instagram.png" alt="">
+                </li>
+                <li>
+                    <img src="assets/img/youtube.png" alt="">
+                </li>
+            </ul>
         </section>
+        <p id="brand">Slapping - Le média qui claque</p><br>
+        <p id="copyright">Copyright © 2023 - Pay Me Now Team. All rights reserved</p>
     </footer>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/carousel.js"></script>
 </body>
 
 </html>

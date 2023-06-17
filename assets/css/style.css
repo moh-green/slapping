@@ -241,13 +241,32 @@ header nav .nav-container #burger-menu-open:hover > .line {
 .decorations .decorations-left {
   z-index: 5;
   position: absolute;
-  height: 100%;
+  height: 105%;
 }
 .decorations .decorations-left {
-  left: 0;
+  left: -200px;
 }
 .decorations .decorations-right {
-  right: 0;
+  right: -200px;
+}
+
+iframe {
+  transition: all 0.1s ease-out;
+  margin: 10px 20px 10px 20px;
+  border-radius: 8px;
+}
+iframe:hover {
+  outline: 2px solid #ffffff;
+}
+
+.video {
+  aspect-ratio: 16/9;
+  height: 25vh;
+}
+
+.short {
+  aspect-ratio: 9/16;
+  width: 25vh;
 }
 
 .big-title {
@@ -301,12 +320,10 @@ header nav .nav-container #burger-menu-open:hover > .line {
   z-index: 10;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: baseline;
   width: 100%;
-}
-.vertical-list h3 {
-  float: left;
+  background-color: #000000;
 }
 
 .horizontal-list {
@@ -317,16 +334,6 @@ header nav .nav-container #burger-menu-open:hover > .line {
   flex-wrap: wrap;
   width: 100%;
 }
-.horizontal-list iframe {
-  aspect-ratio: 16/9;
-  height: 25vh;
-  margin: 10px 20px 10px 20px;
-  border-radius: 8px;
-  transition: all 0.1s ease-out;
-}
-.horizontal-list iframe:hover {
-  outline: 2px solid #ffffff;
-}
 .horizontal-list p strong {
   transition: all 0.5s ease-in-out;
 }
@@ -336,6 +343,7 @@ header nav .nav-container #burger-menu-open:hover > .line {
 }
 
 button {
+  position: relative;
   z-index: 10;
   color: #2e2f60;
   border: solid 2px #2e2f60;
@@ -344,6 +352,12 @@ button {
   font-size: 1.5rem;
   background: none;
   margin: 32px 0px 100px 0px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+button:hover {
+  transform: scale(1.1);
 }
 
 #short {
@@ -360,6 +374,10 @@ button {
   background-color: #ffffff;
   rotate: 2deg;
   transform: scaleX(1.2) scaleY(1.1);
+}
+
+#contenu-video {
+  margin-top: 100px;
 }
 
 #contenu-actualite {
@@ -406,9 +424,10 @@ button {
 }
 
 footer {
+  border-top: #ffffff solid 2px;
   margin-top: 200px;
   min-height: 100px;
-  padding-top: 20px;
+  padding: 20px 10vw;
   background-color: #2e2f60;
   color: #000000;
   display: flex;
@@ -416,17 +435,38 @@ footer {
   justify-content: center;
   align-items: center;
 }
+footer #brand {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e9b220;
+}
+footer #copyright {
+  color: #ffffff;
+}
 footer section {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  width: 100%;
 }
-footer section img {
-  margin: 20px;
-  width: 50px;
+footer section #logo {
+  padding: 10px;
+  margin: auto;
+  height: 70px;
+  float: left;
 }
-footer section img:hover {
+footer section ul {
+  float: right;
+  list-style: none;
+}
+footer section ul li {
+  float: right;
+  padding: 0px 10px;
+}
+footer section ul li img {
+  width: 70px;
   cursor: pointer;
+}
+
+.horizontal-list .preview:nth-child(3) {
+  display: none;
 }
 
 @media (min-width: 1100px) {
@@ -438,4 +478,67 @@ footer section img:hover {
     display: block !important;
     float: right !important;
   }
+  .horizontal-list .preview:nth-child(3) {
+    display: block !important;
+  }
+  .decorations-left {
+    left: 0 !important;
+  }
+  .decorations-right {
+    right: 0 !important;
+  }
+}
+.carousel__list {
+  display: flex;
+  list-style: none;
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  justify-content: center;
+  perspective: 300px;
+}
+.carousel__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0px;
+  width: 25vh;
+  height: 50vh;
+  position: absolute;
+  transition: all 0.3s ease-in;
+}
+.carousel__item::after {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  opacity: 0.1;
+  background-color: #2e2f60;
+  margin: 0;
+  top: 0;
+  left: 0;
+}
+.carousel__item[data-pos="0"] {
+  z-index: 5;
+}
+.carousel__item[data-pos="0"]::after {
+  display: none;
+}
+.carousel__item[data-pos="-1"] {
+  transform: translateX(-40%) scale(0.9);
+  z-index: 4;
+}
+.carousel__item[data-pos="1"] {
+  transform: translateX(40%) scale(0.9);
+  z-index: 4;
+}
+.carousel__item[data-pos="-2"] {
+  transform: translateX(-70%) scale(0.8);
+  z-index: 3;
+}
+.carousel__item[data-pos="2"] {
+  transform: translateX(70%) scale(0.8);
+  z-index: 3;
 }

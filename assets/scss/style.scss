@@ -137,14 +137,31 @@ header {
   .decorations-left {
     z-index: 5;
     position: absolute;
-    height: 100%;
+    height: 105%;
   }
   .decorations-left {
-    left: 0;
+    left: -200px;
   }
   .decorations-right {
-    right: 0;
+    right: -200px;
   }
+}
+
+iframe {
+  &:hover {
+    outline: 2px solid #ffffff;
+  }
+  transition: all 0.1s ease-out;
+  margin: 10px 20px 10px 20px;
+  border-radius: 8px;
+}
+.video {
+  aspect-ratio: 16/9;
+  height: 25vh;
+}
+.short {
+  aspect-ratio: 9/16;
+  width: 25vh;
 }
 
 .big-title {
@@ -197,12 +214,10 @@ header {
   z-index: 10;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: baseline;
   width: 100%;
-  h3 {
-    float: left;
-  }
+  background-color: #000000;
 }
 .horizontal-list {
   z-index: 10;
@@ -211,16 +226,6 @@ header {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  iframe {
-    aspect-ratio: 16/9;
-    height: 25vh;
-    margin: 10px 20px 10px 20px;
-    border-radius: 8px;
-    transition: all 0.1s ease-out;
-    &:hover {
-      outline: 2px solid #ffffff;
-    }
-  }
   p {
     strong {
       transition: all 0.5s ease-in-out;
@@ -233,6 +238,7 @@ header {
 }
 
 button {
+  position: relative;
   z-index: 10;
   color: $dark-blue;
   border: solid 2px $dark-blue;
@@ -241,6 +247,11 @@ button {
   font-size: 1.5rem;
   background: none;
   margin: 32px 0px 100px 0px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+button:hover {
+  transform: scale(1.1);
 }
 
 #short {
@@ -257,6 +268,9 @@ button {
   background-color: $white;
   rotate: 2deg;
   transform: scaleX(1.2) scaleY(1.1);
+}
+#contenu-video {
+  margin-top: 100px;
 }
 
 #contenu-actualite {
@@ -303,26 +317,52 @@ button {
 }
 
 footer {
+  border-top: $white solid 2px;
   margin-top: 200px;
   min-height: 100px;
-  padding-top: 20px;
+  padding: 20px 10vw;
   background-color: $dark-blue;
   color: #000000;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  #brand {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $yellow;
+  }
+  #copyright {
+    color: $white;
+  }
   section {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    img {
-      margin: 20px;
-      width: 50px;
-      &:hover {
-        cursor: pointer;
+    width: 100%;
+    // display: flex;
+    // justify-content: space-evenly;
+    // align-items: center;
+    #logo {
+      padding: 10px;
+      margin: auto;
+      height: 70px;
+      float: left;
+    }
+    ul {
+      float: right;
+      list-style: none;
+      li {
+        float: right;
+        padding: 0px 10px;
+        img {
+          width: 70px;
+          cursor: pointer;
+        }
       }
     }
+  }
+}
+.horizontal-list {
+  .preview:nth-child(3) {
+    display: none;
   }
 }
 
@@ -334,5 +374,80 @@ footer {
   #nav-list {
     display: block !important;
     float: right !important;
+  }
+  .horizontal-list {
+    .preview:nth-child(3) {
+      display: block !important;
+    }
+  }
+  .decorations-left {
+    left: 0 !important;
+  }
+  .decorations-right {
+    right: 0 !important;
+  }
+}
+
+// carroussel
+
+.carousel {
+  &__list {
+    display: flex;
+    list-style: none;
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    justify-content: center;
+    perspective: 300px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0px;
+    width: 25vh;
+    height: 50vh;
+    position: absolute;
+    transition: all 0.3s ease-in;
+    &::after {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      opacity: 0.1;
+      background-color: $dark-blue;
+      margin: 0;
+      top: 0;
+      left: 0;
+    }
+    &[data-pos="0"] {
+      z-index: 5;
+    }
+    &[data-pos="0"]::after {
+      display: none;
+    }
+
+    &[data-pos="-1"] {
+      transform: translateX(-40%) scale(0.9);
+      z-index: 4;
+    }
+
+    &[data-pos="1"] {
+      transform: translateX(40%) scale(0.9);
+      z-index: 4;
+    }
+
+    &[data-pos="-2"] {
+      transform: translateX(-70%) scale(0.8);
+      z-index: 3;
+    }
+
+    &[data-pos="2"] {
+      transform: translateX(70%) scale(0.8);
+      z-index: 3;
+    }
   }
 }
