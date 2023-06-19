@@ -70,7 +70,7 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
         $connexion_text = '
         <li>
         <form>
-        <a class="connexionPopup call-to-action" data-popup="#popup-1">Connexion</a>
+        <a class="connexionPopup call-to-action" data-popup="#popup-1"><img src="assets/img/account.svg" alt="connexion"> Compte</a>
         </form>
     </li>';
     }
@@ -90,7 +90,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
     <main>
         <div class="popup" id="popup-1">
             <div class="popupContent">
-                <button class="close">&times;</button>
+                <button class="close btn">
+                    <p> &times;</p>
+                </button>
                 <div class="divConnexion">
                     <form method="post" enctype="multipart/form-data">
                         <div class="titre">
@@ -99,7 +101,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                             <input type="email" placeholder="Votre Email" name="email" class="input">
                             <input type="password" placeholder="Votre Mot de Passe" name="mdp" class="input">
                             <div class="btn-connexion">
-                                <button type="submit" class="btn">Se connecter</button>
+                                <button type="submit btn" class="btn">
+                                    <p>Se connecter</p>
+                                </button>
                             </div>
                             <div>
                                 <p>Vous n'avez pas de compte ? <strong id="inscription-btn" class="inscriptionPopup">Inscrivez-vous</strong></p>
@@ -111,7 +115,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
         </div>
         <div class="popup" id="popup-2">
             <div class="popupContent">
-                <button class="close">&times;</button>
+                <button class="close btn">
+                    <p>&times;</p>
+                </button>
                 <div class="divInscription">
                     <form method="post" enctype="multipart/form-data">
                         <div class="titre">
@@ -122,7 +128,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                             <input type="password" placeholder="Votre Mot de Passe" name="mdp" class="input">
                             <input type="password" placeholder="Confirmer votre Mot de Passe" name="confirm_mdp" class="input">
                             <div class="btn-inscription">
-                                <button type="submit" class="btn">S'inscrire</button>
+                                <button type="submit btn" class="btn">
+                                    <p>S'inscrire</p>
+                                </button>
                             </div>
                             <div>
                                 <p>Vous avez déjà un compte ? <strong id="connexion-btn" class="connexionPopup">Connectez-vous</strong></p>
@@ -134,7 +142,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
         </div>
         <div class="popup" id="popup-2">
             <div class="popupContent">
-                <button class="close">&times;</button>
+                <button class="close btn">
+                    <p>&times;</p>
+                </button>
                 <div class="divInscription">
                     <form method="post" enctype="multipart/form-data">
                         <div class="titre">
@@ -146,7 +156,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                             <input type="password" placeholder="Votre Mot de Passe" name="mdp" class="input">
                             <input type="password" placeholder="Confirmer votre Mot de Passe" name="confirm_mdp" class="input">
                             <div class="btn-inscription">
-                                <button type="submit" class="btn" name="inscription">S'inscrire</button>
+                                <button type="submit btn" class="btn" name="inscription">
+                                    <p>S'inscrire</p>
+                                </button>
                             </div>
                             <div>
                                 <p>Vous avez déjà un compte ? <strong id="connexion-btn" class="connexionPopup">Connectez-vous</strong></p>
@@ -169,7 +181,7 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                 <iframe class="video" max-width="500" max-height="250" src="https://www.youtube.com/embed/3HwWcPD8MDI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 <iframe class="video" max-width="500" max-height="250" src="https://www.youtube.com/embed/vETp_zL0tFg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </article>
-            <button>
+            <button class="btn btn__darkblue ">
                 <p>Voir plus</p>
             </button>
         </section>
@@ -196,7 +208,7 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                     </li>
                 </ul>
             </article>
-            <button>
+            <button class="btn btn__darkblue ">
                 <p>Voir plus</p>
             </button>
         </section>
@@ -208,15 +220,15 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
             <div class="title big-title" id="video-title" style="display: none">
                 <h2>Vidéos</h2>
             </div>
-            <section class="content-list" id="contenu-video">
+            <div class="content-list" id="contenu-video">
                 <article class="vertical-list">
                     <div class="title big-title">
                         <h3>Music</h3>
                     </div>
                     <div class="horizontal-list">
-                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </article>
                 <article class="vertical-list">
@@ -224,9 +236,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                         <h3>Sport</h3>
                     </div>
                     <div class="horizontal-list">
-                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </article>
                 <article class="vertical-list">
@@ -234,50 +246,78 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                         <h3>Humour</h3>
                     </div>
                     <div class="horizontal-list">
-                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe class="video preview" width="350" height="175" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </article>
-            </section>
-            <button>
+            </div>
+            <button class="btn btn__darkblue section-bottom">
                 <p>Voir plus</p>
             </button>
         </section>
-        <section id="contenu-actualite">
-            <h2>Actualités</h2>
-            <hr>
-            <article>
-                <img src="assets/img/miniature.jpg" alt="">
+        <section class="preview-layout" id="actualite">
+            <div class="title big-title" id="actualite-title">
+                <h2>Actualités</h2>
+            </div>
+            <article class="horizontal-list">
                 <div>
-                    <h3>article 1</h3>
-                    <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+                    <img src="assets/img/miniature.jpg" alt="">
+                </div>
+                <div>
+                    <h3>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</h3>
+                    <h4>
+                        <time datetime="2018-07-07">July 7</time>
+                    </h4>
+                    <button class="btn btn__yellow">Voir plus</button>
                 </div>
             </article>
-            <hr>
-            <article>
-                <img src="assets/img/miniature.jpg" alt="">
+            <article class="horizontal-list">
                 <div>
-                    <h3>le lion est mort ce soir</h3>
-                    <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+                    <img src="assets/img/miniature.jpg" alt="">
+                </div>
+                <div>
+                    <h3>lorem ipsum dolor sit amet consectetur etur adipisicing elit. Qu adipisicing elit. Quisquam, voluptatum.</h3>
+                    <h4>
+                        <time datetime="2018-07-07">July 7</time>
+                    </h4>
+                    <button class="btn btn__yellow">Voir plus</button>
                 </div>
             </article>
-            <hr>
-            <article>
-                <img src="assets/img/miniature.jpg" alt="">
+            <article class="horizontal-list">
                 <div>
-                    <h3>un magnifique article</h3>
-                    <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+                    <img src="assets/img/miniature.jpg" alt="">
+                </div>
+                <div>
+                    <h3>lorem ipsum dolor sit amet consecelit. Qui voluptatum.</h3>
+                    <h4>
+                        <time datetime="2018-07-07">July 7</time>
+                    </h4>
+                    <button class="btn btn__yellow">Voir plus</button>
                 </div>
             </article>
-            <hr>
-            <article>
-                <img src="assets/img/miniature.jpg" alt="">
+            <article class="horizontal-list">
                 <div>
-                    <h3>swag</h3>
-                    <p>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
+                    <img src="assets/img/miniature.jpg" alt="">
+                </div>
+                <div>
+                    <h3>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</h3>
+                    <h4>
+                        <time datetime="2018-07-07">July 7</time>
+                    </h4>
+                    <button class="btn btn__yellow">Voir plus</button>
                 </div>
             </article>
+        </section>
+        <section id="create-account">
+            <div class="decorations">
+                <img class="decorations-right" src="assets/img/thread.svg" alt="">
+            </div>
+            <h2 class="title">Connecte toi pour accéder à <br> tous les contenus</h2>
+            <div>
+                <button class="btn btn__darkblue">Se connecter</button>
+                <button class="btn btn__darkblue--filled ">S'inscrire</button>
+            </div>
         </section>
     </main>
     <footer>
