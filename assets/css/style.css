@@ -136,6 +136,10 @@ a {
   display: none;
 }
 
+time {
+  font-weight: 100;
+}
+
 body {
   height: 100%;
   width: 100%;
@@ -301,6 +305,17 @@ iframe:hover {
   z-index: 10;
 }
 
+#short-title h2 {
+  color: #e9b220;
+}
+
+#actualite-title h2::before {
+  background-color: #e9b220;
+}
+#actualite-title h2 {
+  color: #2e2f60;
+}
+
 .preview-layout {
   overflow-x: clip;
   position: relative;
@@ -405,7 +420,7 @@ footer {
   z-index: 100;
   border-top: #ffffff solid 2px;
   min-height: 100px;
-  padding: 20px 10vw;
+  padding: 20px 5vw;
   background-color: #2e2f60;
   color: #000000;
   display: flex;
@@ -422,20 +437,26 @@ footer #copyright {
   color: #ffffff;
 }
 footer section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
   width: 100%;
 }
 footer section #logo {
   padding: 10px;
   margin: auto;
   height: 70px;
-  float: left;
 }
 footer section ul {
-  float: right;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
   list-style: none;
+  align-items: center;
+  height: 70px;
 }
 footer section ul li {
-  float: right;
   padding: 0px 10px;
 }
 footer section ul li img {
@@ -453,28 +474,51 @@ footer section ul li img {
 #actualite {
   color: white;
   z-index: 10;
-  padding: 0 10vw 0 10vw;
 }
-#actualite :nth-child(even) {
-  justify-content: baseline;
-}
-#actualite :nth-child(even) div {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
+#actualite :nth-child(even) .actu-text {
+  text-align: start;
   align-items: flex-start;
 }
 #actualite :nth-child(odd) {
-  justify-content: end;
-}
-#actualite :nth-child(odd) div {
-  display: flex;
   flex-direction: row-reverse;
-  align-items: flex-start;
+}
+#actualite :nth-child(odd) .actu-text {
+  text-align: end;
+  align-items: flex-end;
 }
 #actualite article {
+  padding: 0.5vh 5vw 0.5vh 5vw;
+  gap: 0vw;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+#actualite article .actu-image {
+  flex-shrink: 0;
+  flex-grow: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 40vh;
+  aspect-ratio: 1/1;
+}
+#actualite article .actu-image img {
   width: 100%;
-  flex-wrap: nowrap;
+  height: 100%;
+}
+#actualite article .actu-text {
+  display: flex;
+  width: 100%;
+  font-size: 1.2rem;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 30vh;
+}
+#actualite article .actu-text * {
+  flex: auto;
+  flex-shrink: 0;
+  flex-grow: 0;
 }
 
 #actualite::before {
@@ -523,6 +567,18 @@ footer section ul li img {
   }
   .decorations-right {
     right: 0 !important;
+  }
+  #actualite article {
+    padding: 0.5vh 10vw 0.5vh 10vw;
+  }
+}
+@media (min-width: 800px) {
+  #actualite article {
+    gap: 5vw;
+    flex-wrap: nowrap;
+  }
+  #actualite article .actu-text {
+    height: 40vh;
   }
 }
 .carousel__list {

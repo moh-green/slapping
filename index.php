@@ -3,6 +3,8 @@
 include 'includes/init.inc.php';
 include 'includes/header.php';
 include 'includes/nav.php';
+include 'includes/footer.php';
+include 'includes/menu.php';
 
 gererSession();
 // var_dump($_SESSION);
@@ -78,14 +80,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
         $connexion_text += '
     <p>Bonjour ' . $_SESSION['pseudo'] . ' </p>';
     }
+    new BurgerMenu($connexion_text);
     new NavBar($connexion_text, $estConnecte);
     ?>
-    <!-- </ul>
-            </div>
-        </nav>
-    </header> -->
-
-
 
     <main>
         <div class="popup" id="popup-1">
@@ -261,49 +258,49 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                 <h2>Actualités</h2>
             </div>
             <article class="horizontal-list">
-                <div>
+                <div class="actu-image">
                     <img src="assets/img/miniature.jpg" alt="">
                 </div>
-                <div>
+                <div class="actu-text">
                     <h3>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</h3>
                     <h4>
-                        <time datetime="2018-07-07">July 7</time>
+                        <time datetime="2018-07-07">2018/07/07</time>
                     </h4>
                     <button class="btn btn__yellow">Voir plus</button>
                 </div>
             </article>
             <article class="horizontal-list">
-                <div>
+                <div class="actu-image">
                     <img src="assets/img/miniature.jpg" alt="">
                 </div>
-                <div>
+                <div class="actu-text">
                     <h3>lorem ipsum dolor sit amet consectetur etur adipisicing elit. Qu adipisicing elit. Quisquam, voluptatum.</h3>
                     <h4>
-                        <time datetime="2018-07-07">July 7</time>
+                        <time datetime="2018-07-07">2018/07/07</time>
                     </h4>
                     <button class="btn btn__yellow">Voir plus</button>
                 </div>
             </article>
             <article class="horizontal-list">
-                <div>
+                <div class="actu-image">
                     <img src="assets/img/miniature.jpg" alt="">
                 </div>
-                <div>
+                <div class="actu-text">
                     <h3>lorem ipsum dolor sit amet consecelit. Qui voluptatum.</h3>
                     <h4>
-                        <time datetime="2018-07-07">July 7</time>
+                        <time datetime="2018-07-07">2018/07/07</time>
                     </h4>
                     <button class="btn btn__yellow">Voir plus</button>
                 </div>
             </article>
             <article class="horizontal-list">
-                <div>
+                <div class="actu-image">
                     <img src="assets/img/miniature.jpg" alt="">
                 </div>
-                <div>
+                <div class="actu-text">
                     <h3>lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</h3>
                     <h4>
-                        <time datetime="2018-07-07">July 7</time>
+                        <time datetime="2018-07-07">2018/07/07</time>
                     </h4>
                     <button class="btn btn__yellow">Voir plus</button>
                 </div>
@@ -320,24 +317,9 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
             </div>
         </section>
     </main>
-    <footer>
-        <section>
-            <img src="assets/img/logo.png" alt="" id="logo">
-            <ul>
-                <li>
-                    <img src="assets/img/facebook.png" alt="">
-                </li>
-                <li>
-                    <img src="assets/img/instagram.png" alt="">
-                </li>
-                <li>
-                    <img src="assets/img/youtube.png" alt="">
-                </li>
-            </ul>
-        </section>
-        <p id="brand">Slapping - Le média qui claque</p><br>
-        <p id="copyright">Copyright © 2023 - Pay Me Now Team. All rights reserved</p>
-    </footer>
+    <?php
+    new Footer();
+    ?>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/carousel.js"></script>
 </body>
