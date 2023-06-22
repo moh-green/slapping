@@ -20,13 +20,13 @@ class NavBar
                         <li><a href="short.php">Short</a></li>
                         <li><a href="actualite.php">Actualités</a></li>
                         <li><a href="contact.php">À propos</a></li>
-                        ' . $connexionState . '
+                        <li class="nav-call-to-action"><img src="assets/img/account.svg" alt="connexion">' . $connexionState . '</li>
                     </ul>
-                    <div id="burger-menu-open">
+                    <a id="burger-menu-open" href="#burger-menu">
                         <div class="line"></div>
                         <div class="line"></div>
                         <div class="line"></div>
-                    </div>
+                    </a>
                 </div>
             </nav>
         </header>';

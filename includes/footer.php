@@ -20,6 +20,10 @@ class Footer
         </section>
         <p id="brand">Slapping - Le média qui claque</p><br>
         <p id="copyright">Copyright © 2023 - Pay Me Now Team. All rights reserved</p>
-    </footer>';
+    </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>';
     }
 }

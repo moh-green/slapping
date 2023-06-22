@@ -29,52 +29,20 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
 
 ?>
 
-
-<!-- <!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slapping - Le média qui claque</title>
-    <link rel="stylesheet" href="assets/css/style.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Sigmar+One&display=swap" rel="stylesheet">
-</head> -->
-
-<body>
-    <!-- <header>
-        <nav>
-            <div class="nav-container">
-                <div class="logo-container">
-                    <img src="assets/img/logo.png" alt="logo de Slapping" id="logo">
-                </div>
-                <ul>
-                    <li><a href="index.php">Accueil</a></li>
-                    <li><a href="video.php">Vidéos</a></li>
-                    <li><a href="short.php">Short</a></li>
-                    <li><a href="actualite.php">Actualités</a></li>
-                    <li><a href="contact.php">À propos</a></li> -->
-
+<body duration="250" easing="ease-out" anchorPlacement="bottom-bottom" once="false" mirror="true">
     <?php
 
     if ($estConnecte) {
         $connexion_text = '
-        <li>
         <form method="post">
             <input type="hidden" name="action" value="deconnexion">
             <button type="submit" class="deconnexionBtn">Déconnexion</button>
-        </form>
-    </li>';
+        </form>';
     } else {
         $connexion_text = '
-        <li>
         <form>
-        <a class="connexionPopup call-to-action" data-popup="#popup-1"><img src="assets/img/account.svg" alt="connexion"> Compte</a>
-        </form>
-    </li>';
+        <a class="connexionPopup" data-popup="#popup-1">Compte</a>
+        </form>';
     }
     if ($estConnecte && isset($_SESSION['pseudo'])) {
         $connexion_text += '
@@ -183,10 +151,10 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
             </button>
         </section>
         <section class="preview-layout" id="short">
-            <div class="title big-title" id="short-title">
+            <div data-aos="fade-up" class="title big-title aos-init aos-animate" id="short-title">
                 <h2>Shorts</h2>
             </div>
-            <article class="horizontal-list carousel">
+            <article data-aos="fade-up" class="horizontal-list carousel aos-init aos-animate">
                 <ul class="carousel__list">
                     <li class="carousel__item " data-pos="-2">
                         <iframe class="short" width="100%" height="100%" src="https://youtube.com/embed/jG5mmQHOBRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -205,59 +173,59 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                     </li>
                 </ul>
             </article>
-            <button class="btn btn__darkblue ">
+            <a href="short.php" class="btn btn__darkblue">
                 <p>Voir plus</p>
-            </button>
+            </a>
         </section>
         <section class="preview-layout" id="video">
             <div class="decorations">
                 <img class="decorations-right" src="assets/img/round-decoration-right.svg" alt="">
                 <img class="decorations-left" src="assets/img/decoration-left.svg" alt="">
             </div>
-            <div class="title big-title" id="video-title" style="display: none">
+            <div data-aos="fade-up" class="title big-title aos-init aos-animate" id="video-title" style="display: none">
                 <h2>Vidéos</h2>
             </div>
             <div class="content-list" id="contenu-video">
                 <article class="vertical-list">
-                    <div class="title big-title">
+                    <div data-aos="fade-up" class="title big-title aos-init aos-animate">
                         <h3>Music</h3>
                     </div>
-                    <div class="horizontal-list">
+                    <div data-aos="fade-up" class="horizontal-list aos-init aos-animate">
                         <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </article>
                 <article class="vertical-list">
-                    <div class="title big-title">
+                    <div data-aos="fade-up" class="title big-title aos-init aos-animate">
                         <h3>Sport</h3>
                     </div>
-                    <div class="horizontal-list">
+                    <div data-aos="fade-up" class="horizontal-list aos-init aos-animate">
                         <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </article>
                 <article class="vertical-list">
-                    <div class="title big-title">
+                    <div data-aos="fade-up" class="title big-title aos-init aos-animate">
                         <h3>Humour</h3>
                     </div>
-                    <div class="horizontal-list">
+                    <div data-aos="fade-up" class="horizontal-list aos-init aos-animate">
                         <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <iframe class="video preview" max-width="100%" max-height="100%" src="https://www.youtube.com/embed/v8uDm8s3ewc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </article>
             </div>
-            <button class="btn btn__darkblue section-bottom">
+            <a href="video.php" class="btn btn__darkblue section-bottom">
                 <p>Voir plus</p>
-            </button>
+            </a>
         </section>
         <section class="preview-layout" id="actualite">
-            <div class="title big-title" id="actualite-title">
+            <div data-aos="fade-up" class="title big-title aos-init aos-animate" id="actualite-title">
                 <h2>Actualités</h2>
             </div>
-            <article class="horizontal-list">
+            <article data-aos="fade-up" class="horizontal-list aos-init aos-animate">
                 <div class="actu-image">
                     <img src="assets/img/miniature.jpg" alt="">
                 </div>
@@ -266,10 +234,10 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                     <h4>
                         <time datetime="2018-07-07">2018/07/07</time>
                     </h4>
-                    <button class="btn btn__yellow">Voir plus</button>
+                    <a href="actualite.php" class="btn btn__yellow">Voir plus</a>
                 </div>
             </article>
-            <article class="horizontal-list">
+            <article data-aos="fade-up" class="horizontal-list aos-init aos-animate">
                 <div class="actu-image">
                     <img src="assets/img/miniature.jpg" alt="">
                 </div>
@@ -278,10 +246,10 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                     <h4>
                         <time datetime="2018-07-07">2018/07/07</time>
                     </h4>
-                    <button class="btn btn__yellow">Voir plus</button>
+                    <a href="actualite.php" class="btn btn__yellow">Voir plus</a>
                 </div>
             </article>
-            <article class="horizontal-list">
+            <article data-aos="fade-up" class="horizontal-list aos-init aos-animate">
                 <div class="actu-image">
                     <img src="assets/img/miniature.jpg" alt="">
                 </div>
@@ -290,10 +258,10 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                     <h4>
                         <time datetime="2018-07-07">2018/07/07</time>
                     </h4>
-                    <button class="btn btn__yellow">Voir plus</button>
+                    <a href="actualite.php" class="btn btn__yellow">Voir plus</a>
                 </div>
             </article>
-            <article class="horizontal-list">
+            <article data-aos="fade-up" class="horizontal-list aos-init aos-animate">
                 <div class="actu-image">
                     <img src="assets/img/miniature.jpg" alt="">
                 </div>
@@ -302,7 +270,7 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
                     <h4>
                         <time datetime="2018-07-07">2018/07/07</time>
                     </h4>
-                    <button class="btn btn__yellow">Voir plus</button>
+                    <a href="actualite.php" class="btn btn__yellow">Voir plus</a>
                 </div>
             </article>
         </section>
@@ -310,10 +278,10 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
             <div class="decorations">
                 <img class="decorations-right" src="assets/img/thread.svg" alt="">
             </div>
-            <h2 class="title">Connecte toi pour accéder à <br> tous les contenus</h2>
-            <div>
-                <button class="btn btn__darkblue">Se connecter</button>
-                <button class="btn btn__darkblue--filled ">S'inscrire</button>
+            <h2 data-aos="fade-up" class="title aos-init aos-animate">Connecte toi pour accéder à <br> tous les contenus</h2>
+            <div class="horizontal-list">
+                <a class="btn btn__darkblue" data-popup="#popup-1">Se connecter</a>
+                <a class="btn btn__darkblue--filled" data-popup="#popup-2">S'inscrire</a>
             </div>
         </section>
     </main>
