@@ -24,6 +24,7 @@ h2,
 h3 {
   font-weight: 800;
   font-family: $title-font;
+  letter-spacing: -0.5px;
 }
 .rappel-interaction {
   width: 100%;
@@ -122,8 +123,12 @@ body {
     margin: 5vh 0 5vh 0;
     list-style: none;
     li {
+      img {
+        display: none;
+      }
       transition: all 0.1s ease-out;
       width: 100%;
+      display: contents;
       &:hover {
         padding-left: 20px;
         a {
@@ -133,7 +138,7 @@ body {
       a {
         width: 100%;
         display: inline-block;
-        padding: 2vh 4vh 2vh 4vh;
+        padding: 2vh 4vh 2vh 4vh !important;
         text-decoration: none;
         color: $white;
         font-size: 5vh;
@@ -235,25 +240,31 @@ header {
   }
 }
 
-.nav-call-to-action {
+.nav-btn {
   height: 60px;
   margin-top: 5px;
-  padding: 0px 10px 0px 10px !important;
   z-index: 10;
-  border: solid 2px $black;
   border-radius: 8px;
   position: relative;
   display: flex;
   align-items: center;
+  padding: 0px 10px 0px 10px !important;
+  &__full {
+    padding: 0px 16px 0px 16px !important;
+    border: solid 2px $black;
+  }
   img {
     height: 25px;
+  }
+  form a {
+    padding: 0 !important;
   }
   &:hover {
     background-color: $yellow !important;
     form {
       a {
         color: $black !important;
-        opacity: 0.8;
+        opacity: 0.75;
       }
     }
   }
@@ -534,7 +545,7 @@ footer {
     .actu-text {
       display: flex;
       width: 100%;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       flex-direction: column;
       justify-content: space-evenly;
       height: 30vh;

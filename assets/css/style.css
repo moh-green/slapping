@@ -125,6 +125,7 @@ h2,
 h3 {
   font-weight: 800;
   font-family: "Pathway Extreme", cursive;
+  letter-spacing: -0.5px;
 }
 
 .rappel-interaction {
@@ -233,6 +234,10 @@ body {
 #burger-menu #nav-list-burger li {
   transition: all 0.1s ease-out;
   width: 100%;
+  display: contents;
+}
+#burger-menu #nav-list-burger li img {
+  display: none;
 }
 #burger-menu #nav-list-burger li:hover {
   padding-left: 20px;
@@ -243,7 +248,7 @@ body {
 #burger-menu #nav-list-burger li a {
   width: 100%;
   display: inline-block;
-  padding: 2vh 4vh 2vh 4vh;
+  padding: 2vh 4vh 2vh 4vh !important;
   text-decoration: none;
   color: #ffffff;
   font-size: 5vh;
@@ -340,26 +345,32 @@ header nav .nav-container #burger-menu-open:hover > .line {
   transform: translate(0, 0);
 }
 
-.nav-call-to-action {
+.nav-btn {
   height: 60px;
   margin-top: 5px;
-  padding: 0px 10px 0px 10px !important;
   z-index: 10;
-  border: solid 2px #000000;
   border-radius: 8px;
   position: relative;
   display: flex;
   align-items: center;
+  padding: 0px 10px 0px 10px !important;
 }
-.nav-call-to-action img {
+.nav-btn__full {
+  padding: 0px 16px 0px 16px !important;
+  border: solid 2px #000000;
+}
+.nav-btn img {
   height: 25px;
 }
-.nav-call-to-action:hover {
+.nav-btn form a {
+  padding: 0 !important;
+}
+.nav-btn:hover {
   background-color: #e9b220 !important;
 }
-.nav-call-to-action:hover form a {
+.nav-btn:hover form a {
   color: #000000 !important;
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
 .decorations {
@@ -636,7 +647,7 @@ footer section ul li img {
 #actualite article .actu-text {
   display: flex;
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   flex-direction: column;
   justify-content: space-evenly;
   height: 30vh;

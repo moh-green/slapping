@@ -40,9 +40,13 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
         </form>';
     } else {
         $connexion_text = '
+        <li class="nav-btn"><img src="assets/img/account.svg" alt="connexion">
         <form>
-        <a class="connexionPopup" data-popup="#popup-1">Compte</a>
-        </form>';
+        <a class="connexionPopup" data-popup="#popup-1">Connection</a>
+        </form></li>
+        <li class="nav-btn nav-btn__full"><form>
+        <a class="connexionPopup" data-popup="#popup-2">Inscription</a>
+        </form></li>';
     }
     if ($estConnecte && isset($_SESSION['pseudo'])) {
         $connexion_text += '
