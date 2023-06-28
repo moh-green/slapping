@@ -10,11 +10,14 @@ new Head('<link rel="stylesheet" href="assets/css/short.min.css">');
 
 <body>
     <?php
-    new BurgerMenu(false);
+    new BurgerMenu(true);
     new NavBar(false, true);
+
+    // new BurgerMenu(false);
+    // new NavBar(false, true);
     ?>
     <main id="contact-content">
-        <div class="title big-title article-text">
+        <div class="title big-title article-text" id="actualite-title">
             <h2>Présentation</h2>
         </div>
         <div class="text">
@@ -29,7 +32,7 @@ new Head('<link rel="stylesheet" href="assets/css/short.min.css">');
                 Assumenda minima fuga laudantium impedit, itaque nemo explicabo architecto exercitationem blanditiis alias tenetur facere maxime, suscipit qui quo! Sapiente dolore error autem harum commodi qui reprehenderit accusamus ex eum mollitia?
             </p>
         </div>
-        <div class="title big-title article-text">
+        <div class="title big-title article-text" id="actualite-title">
             <h2>Ils nous font confiance</h2>
         </div>
         <section id="list-logos">

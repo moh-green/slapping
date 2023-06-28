@@ -6,6 +6,8 @@ include 'includes/nav.php';
 include 'includes/footer.php';
 include 'includes/menu.php';
 
+new Head('<link rel="stylesheet" href="assets/css/accueil.min.css">');
+
 gererSession();
 // var_dump($_SESSION);
 // var_dump($_SESSION['pseudo']);
@@ -58,39 +60,41 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
 
     <main>
         <div class="popup" id="popup-1">
+            <button class="btn close">
+                <p> &times;</p>
+            </button>
             <div class="popupContent">
-                <button class="close btn">
-                    <p> &times;</p>
-                </button>
                 <div class="divConnexion">
                     <form method="post" enctype="multipart/form-data">
                         <div class="titre">
-                            <h2>Bienvenue,</h2>
-                            <p>connectez-vous pour continuer</p>
+                            <div class="title big-title" id="connexion-title">
+                                <h2>Bienvenue</h2>
+                            </div>
+                            <p class="popup-text">connectez-vous pour continuer</p>
                             <input type="email" placeholder="Votre Email" name="email" class="input">
                             <input type="password" placeholder="Votre Mot de Passe" name="mdp" class="input">
                             <div class="btn-connexion">
-                                <button type="submit btn" class="btn">
+                                <button type="submit btn" class="btn btn__darkblue">
                                     <p>Se connecter</p>
                                 </button>
                             </div>
-                            <div>
-                                <p>Vous n'avez pas de compte ? <strong id="inscription-btn" class="inscriptionPopup">Inscrivez-vous</strong></p>
-                            </div>
+                            <p class="popup-text popup-text--small">Vous n'avez pas de compte ? <strong id="inscription-btn" class="inscriptionPopup">Inscrivez-vous</strong></p>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
         <div class="popup" id="popup-2">
+            <button class="close btn">
+                <p>&times;</p>
+            </button>
             <div class="popupContent">
-                <button class="close btn">
-                    <p>&times;</p>
-                </button>
                 <div class="divInscription">
                     <form method="post" enctype="multipart/form-data">
                         <div class="titre">
-                            <h2>Bienvenue,</h2>
+                            <div class="title big-title" id="connexion-title">
+                                <h2>Bienvenue,</h2>
+                            </div>
                             <p>inscrivez-vous pour continuer</p>
                             <input type="text" placeholder="Votre Pseudo" name="pseudo" class="input">
                             <input type="email" placeholder="Votre Email" name="email" class="input">

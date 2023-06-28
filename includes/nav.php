@@ -19,8 +19,11 @@ class NavBar
                         <li><a href="video.php">Vidéos</a></li>
                         <li><a href="short.php">Short</a></li>
                         <li><a href="actualite.php">Actualités</a></li>
-                        <li><a href="contact.php">À propos</a></li>
-                        ' . $connexionState . '
+                        <li><a href="contact.php">À propos</a></li>';
+        if ($connexionState != false) {
+            echo $connexionState;
+        }
+        echo '
                     </ul>
                     <a id="burger-menu-open" href="#burger-menu">
                         <div class="line"></div>

@@ -1,8 +1,15 @@
-<?php 
+<?php
 session_start();
 include 'includes/init.inc.php';
+include 'includes/header.php';
+include 'includes/nav.php';
+include 'includes/footer.php';
+include 'includes/menu.php';
+
+new Head('<link rel="stylesheet" href="assets/css/short.min.css">');
 
 use Controleurs\ShortsControleur;
+
 $shorts = new ShortsControleur;
 $listeShortSearch = array();
 if (!isset($_SESSION['categorie-short'])) {
@@ -15,7 +22,7 @@ if ($_SESSION['categorie-short'] == 'music') {
     $listeShort = $shorts->filtrerCategorie('sport');
 } elseif ($_SESSION['categorie-short'] == 'business') {
     $listeShort = $shorts->filtrerCategorie('business');
-}else{
+} else {
     $listeShort = $shorts->listeUser();
 }
 
@@ -25,7 +32,7 @@ if (isset($_POST['musique'])) {
     if ($_SESSION['categorie-short'] == 'music') {
         $listeShort = $shorts->listeUser();
         $_SESSION['categorie-short'] = '';
-    }else{
+    } else {
         $listeShort = $shorts->filtrerCategorie('music');
         $_SESSION['categorie-short'] = 'music';
     }
@@ -33,7 +40,7 @@ if (isset($_POST['musique'])) {
     if ($_SESSION['categorie-short'] == 'sport') {
         $listeShort = $shorts->listeUser();
         $_SESSION['categorie-short'] = '';
-    }else{
+    } else {
         $listeShort = $shorts->filtrerCategorie('sport');
         $_SESSION['categorie-short'] = 'sport';
     }
@@ -41,17 +48,15 @@ if (isset($_POST['musique'])) {
     if ($_SESSION['categorie-short'] == 'business') {
         $listeShort = $shorts->listeUser();
         $_SESSION['categorie-short'] = '';
-    }else{
+    } else {
         $listeShort = $shorts->filtrerCategorie('business');
         $_SESSION['categorie-short'] = 'business';
     }
-}elseif (isset($_POST['all'])) {
+} elseif (isset($_POST['all'])) {
     $listeShort = $shorts->listeUser();
     $_SESSION['categorie-short'] = '';
-}
-
-elseif (isset($_POST['search'])) {
-   $listeShortSearch = $shorts->searchShort();
+} elseif (isset($_POST['search'])) {
+    $listeShortSearch = $shorts->searchShort();
 }
 
 
@@ -67,48 +72,30 @@ $debut_shorts = ($page_shorts - 1) * $shorts_par_page;
 $fin_shorts = $debut_shorts + $shorts_par_page - 1;
 
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slapping - short</title>
-    <link rel="stylesheet" href="assets/css/short.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Sigmar+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-</head>
+
 <body>
+    <?php
+    new BurgerMenu(true);
+    new NavBar(false, true);
+    ?>
     <header>
-    <img src="assets/img/logo.png" alt="logo de Slapping" id="logo">
-       <nav>
-              <ul>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="video.php">Vidéos</a></li>
-                <li><a href="short.php" id="header-video">Short</a></li>
-                <li><a href="actualite.php">Actualités</a></li>
-                <li><a href="contact.php">À propos</a></li>
-              </ul>
-       </nav> 
-       <section>
-           <article id="filter">
+        <div id="filters-container">
+            <article id="filter">
                 <form method="post" action="short.php">
-                    <input class="btn-filter" type="submit" name="all" value="Tous">
-                    <input class=" <?php echo $music = ($_SESSION['categorie-short'] == 'music') ? "cliked" : "btn-filter" ?>" type="submit" name="musique" value="Musique">
-                    <input class=" <?php echo $sport = ($_SESSION['categorie-short'] == 'sport') ? "cliked" : "btn-filter"  ?>" type="submit" name="sport" value="Sport">
+                    <input class="btn-filter" type="submit" name="all" value="Tous">|
+                    <input class=" <?php echo $music = ($_SESSION['categorie-short'] == 'music') ? "cliked" : "btn-filter" ?>" type="submit" name="musique" value="Musique">|
+                    <input class=" <?php echo $sport = ($_SESSION['categorie-short'] == 'sport') ? "cliked" : "btn-filter"  ?>" type="submit" name="sport" value="Sport">|
                     <input class=" <?php echo $business = ($_SESSION['categorie-short'] == 'business') ? "cliked" : "btn-filter"  ?>" type="submit" name="business" value="Business">
                 </form>
-               <form action="short.php" method="post" class="search-bar">
+                <form action="short.php" method="post" class="search-bar">
                     <label for="search"></label>
-                   <input type="text" name="search" id="search"required class="search-bar-input">
+                    <input type="text" name="search" id="search" required class="search-bar-input">
                     <button type="submit" class="fa fa-search">
-                        
-                   </button>
-               </form>
+
+                    </button>
+                </form>
             </article>
-       </section>
+        </div>
     </header>
     <main>
         <article>
@@ -116,53 +103,50 @@ $fin_shorts = $debut_shorts + $shorts_par_page - 1;
                 <?php
                 if (isset($_POST['search'])) {
                     foreach ($listeShortSearch as $result) {
-                        ?>
-                        <iframe width="259" height="480" src="<?php echo $result['lien'] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <?php
-                    }  
-                } else{
                 ?>
-            <?php for ($i = $debut_shorts; $i <= $fin_shorts && $i < count($listeShort); $i++): ?>
-            <?php $short = $listeShort[$i]; ?>
+                        <iframe width="259" height="480" src="<?php echo $result['lien'] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <?php
+                    }
+                } else {
+                    ?>
+                    <?php for ($i = $debut_shorts; $i <= $fin_shorts && $i < count($listeShort); $i++) : ?>
+                        <?php $short = $listeShort[$i]; ?>
                         <iframe width="259" height="480" src="<?php echo $short->getLien() ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <?php endfor; }?>
+                <?php endfor;
+                } ?>
             </div>
         </article>
-        <?php if (!isset($_POST['search'])){
+        <?php if (!isset($_POST['search'])) {
         ?>
-        <nav aria-label="Pagination">
-            <ul id="page-num">
-                <?php if ($page_shorts > 1): ?>
-                    <li>
-                        <a href="<?= '?controleur=shorts&page_shorts=' . ($page_shorts - 1) ?>">Précédent</a>
-                    </li>
-                <?php endif; ?>
+            <nav aria-label="Pagination">
+                <ul id="page-num">
+                    <?php if ($page_shorts > 1) : ?>
+                        <li>
+                            <a href="<?= '?controleur=shorts&page_shorts=' . ($page_shorts - 1) ?>">◀</a>
+                        </li>
+                    <?php endif; ?>
 
-                <?php for ($i = 1; $i <= $pages_shorts; $i++): ?>
-                    <li class="page-item <?= ($i == $page_shorts) ? 'active' : '' ?>">
-                        <a href="<?= '?controleur=shorts&page_shorts=' . $i ?>"><?= $i ?></a>
-                    </li>
-                <?php endfor; ?>
+                    <?php for ($i = 1; $i <= $pages_shorts; $i++) : ?>
+                        <li class="page-item <?= ($i == $page_shorts) ? 'active' : '' ?>">
+                            <a href="<?= '?controleur=shorts&page_shorts=' . $i ?>"><?= $i ?></a>
+                        </li>
+                    <?php endfor; ?>
 
-                <?php if ($page_shorts < $pages_shorts): ?>
-                    <li>
-                        <a href="<?= '?controleur=shorts&page_shorts=' . ($page_shorts + 1) ?>">Suivant</a>
-                    </li>
-                <?php endif; ?>
-            </ul>
-        </nav>
+                    <?php if ($page_shorts < $pages_shorts) : ?>
+                        <li>
+                            <a href="<?= '?controleur=shorts&page_shorts=' . ($page_shorts + 1) ?>">▶</a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
 
         <?php
         }
         ?>
     </main>
-    <footer>
-        <p>Slapping - Le média qui claque</p>
-        <section>
-            <img src="assets/img/facebook.png" alt="">
-            <img src="assets/img/instagram.png" alt="">
-            <img src="assets/img/youtube.png" alt="">
-        </section>
-    </footer>
+    <?php
+    new Footer();
+    ?>
 </body>
+
 </html>

@@ -1,3 +1,5 @@
+@import "_base.scss";
+
 .popup {
   display: none;
   position: fixed;
@@ -6,94 +8,109 @@
   width: 100%;
   height: 100%;
   z-index: 999;
-  background-color: rgba(0, 0, 75, 0.5);
+  background-color: rgba(0, 0, 50, 0.5);
   .popupContent {
+    box-shadow: 0px 0px 100px black;
     position: absolute;
     top: 50%;
     left: 50%;
     width: 50vh;
     height: 50vh;
     transform: translate(-50%, -50%);
-    --input-focus: #fed500;
-    --font-color: #8664e3;
-    --font-color-sub: #8664e3;
-    --bg-color: #fed500;
-    --main-color: #323232;
-    padding: 20px;
-    background: #8664e3;
-    border-radius: 5px;
-    border: 2px solid var(--main-color);
-    box-shadow: 4px 4px var(--main-color);
-    h2 {
-      color: #fed500;
-      font-weight: 900;
-      font-size: 20px;
-      margin-bottom: 25px;
+    background: $yellow;
+    &::before {
+      position: absolute;
+      z-index: -1;
+      content: "";
+      height: 100%;
+      width: 100%;
+      inset: 0;
+      background-color: $yellow;
+      rotate: 2deg;
+      transform: scaleX(1.1) scaleY(1.1);
     }
-    p {
-      color: #fed500;
+    &::after {
+      position: absolute;
+      z-index: -2;
+      content: "";
+      height: 100%;
+      width: 100%;
+      inset: 0;
+      background-color: $white;
+      rotate: -1deg;
+      transform: scaleX(1.1) scaleY(1.1);
+    }
+    .popup-text {
+      text-align: center;
+      margin: 3vh 1vh;
+      color: $black;
       font-weight: 600;
-      font-size: 17px;
+      font-size: 3vh;
+      &--small {
+        font-size: 2vh;
+      }
     }
     .input {
-      width: 250px;
-      height: 40px;
-      border-radius: 5px;
-      border: 2px solid var(--main-color);
-      background-color: var(--bg-color);
-      box-shadow: 4px 4px var(--main-color);
-      font-size: 15px;
+      border: 2px solid $black;
+      color: $black;
+      background-color: transparent;
+      width: 100%;
+      height: 5vh;
+      border-radius: 8px;
+      font-size: 2vh;
       font-weight: 600;
-      color: var(--font-color);
       padding: 5px 10px;
+      margin-bottom: 2vh;
       outline: none;
     }
     .input:focus {
-      border: 2px solid var(--input-focus);
-      box-shadow: 4px 4px var(--input-focus);
+      outline: 4px solid rgba($black, 0.5);
+      z-index: 10;
     }
     .input::placeholder {
-      color: var(--font-color-sub);
-      opacity: 0.8;
+      color: $black;
+      opacity: 0.5;
+    }
+    .btn-inscription,
+    .btn-connexion {
+      width: 50%;
+      transform: translate(50%);
     }
     .btn {
-      margin: 50px auto 0 auto;
-      width: 120px;
-      height: 40px;
-      border-radius: 5px;
-      border: 2px solid var(--main-color);
-      background-color: var(--bg-color);
-      box-shadow: 4px 4px var(--main-color);
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--font-color);
-      cursor: pointer;
-    }
-    .btn:hover {
-      background-color: var(--main-color);
-      color: var(--bg-color);
+      margin: 0;
     }
   }
   .close {
+    box-shadow: 0px 0px 100px rgba($black, 0.5) inset, 0px 0px 100px black;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 2px solid var(--main-color);
-    background-color: var(--bg-color);
-    box-shadow: 4px 4px var(--main-color);
+    top: 15px;
+    right: 15px;
+    border-radius: 8px;
+    border: 2px solid $white;
+    background-color: transparent;
     font-size: 17px;
     font-weight: 600;
-    color: var(--font-color);
+    color: $white;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    p {
+      font-size: 2rem;
+    }
+    &:hover {
+      color: $yellow;
+      border-color: $yellow;
+    }
   }
-  .close:hover {
-    background-color: var(--main-color);
-    color: var(--bg-color);
+}
+
+#connexion-title {
+  left: 50%;
+  width: 50%;
+  transform: translate(-50%);
+  margin: 25px 0;
+  h2 {
+    font-size: 5vh;
   }
 }

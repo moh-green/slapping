@@ -18,7 +18,11 @@ class BurgerMenu
                         <li><a href="short.php">Short</a></li>
                         <li><a href="actualite.php">Actualités</a></li>
                         <li><a href="contact.php">À propos</a></li>
-                        <li>' . $connexionState . '</li>
+                        <li>';
+        if ($connexionState != false) {
+            echo $connexionState;
+        }
+        echo '</li>
                     </ul>
                 </div>';
     }
