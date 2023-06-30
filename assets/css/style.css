@@ -20,7 +20,7 @@ h1,
 h2,
 h3 {
   font-weight: 800;
-  font-family: "Pathway Extreme", cursive;
+  font-family: "inter", sans-serif;
   letter-spacing: -0.5px;
 }
 
@@ -174,44 +174,85 @@ header {
 }
 header nav {
   width: 100%;
-  height: 70px;
   background-color: #e9b220;
 }
-header nav .nav-container {
-  margin: auto;
+header nav .nav-desktop-container {
+  position: relative;
   padding: 0;
-  max-width: 1200px;
+  width: 100%;
+  flex-direction: column;
+  display: none;
+}
+header nav .nav-desktop-container .logo-container {
+  position: relative;
+  width: 100%;
   height: 70px;
 }
-header nav .nav-container #nav-list {
-  display: none;
-  height: 70px;
+header nav .nav-desktop-container .logo-container img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+header nav .nav-desktop-container .slogan {
+  position: relative;
+  width: 100%;
+  height: 1.5vh;
+}
+header nav .nav-desktop-container .slogan p {
+  padding-bottom: 5px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  bottom: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+header nav .nav-desktop-container #nav-list {
+  background-color: #ffffff;
+  border-top: solid 2px #2e2f60;
+  border-bottom: solid 2px #2e2f60;
+  margin: auto;
+  height: 54px;
   list-style: none;
-  margin: 0;
+  flex-direction: column;
+  width: 100%;
   padding: 0;
   align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  display: none;
+  position: sticky;
+  top: 0;
 }
-header nav .nav-container #nav-list li {
-  float: left;
-  padding: 10px 4px 10px 4px;
+header nav .nav-desktop-container #nav-list li {
+  padding: 0px 10px;
   list-style: none;
   transition: all 0.1s ease-out;
 }
-header nav .nav-container #nav-list li a {
+header nav .nav-desktop-container #nav-list li a {
   padding: 8px 12px 8px 12px;
   width: 100%;
   line-height: 50px;
   text-align: center;
   text-decoration: none;
-  color: #000000;
+  color: #2e2f60;
   font-size: 1.2rem;
   font-weight: 800;
 }
-header nav .nav-container #nav-list li:hover {
+header nav .nav-desktop-container #nav-list li:hover {
   background-color: #525387;
 }
-header nav .nav-container #nav-list li:hover a {
+header nav .nav-desktop-container #nav-list li:hover a {
   color: #ffffff;
+}
+header nav .nav-container {
+  border-bottom: 2px solid #2e2f60;
+  top: 0;
+  position: sticky;
+  margin: auto;
+  padding: 0;
+  max-width: 1200px;
+  height: 70px;
 }
 header nav .nav-container #burger-menu-open {
   display: flex;
@@ -241,31 +282,15 @@ header nav .nav-container #burger-menu-open:hover > .line {
 }
 
 .nav-btn {
-  height: 60px;
-  margin-top: 5px;
+  height: 50px;
   z-index: 10;
-  border-radius: 8px;
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0px 10px 0px 10px !important;
-}
-.nav-btn__full {
-  padding: 0px 16px 0px 16px !important;
-  border: solid 2px #000000;
+  padding: 0px 10px !important;
 }
 .nav-btn img {
   height: 25px;
-}
-.nav-btn form a {
-  padding: 0 !important;
-}
-.nav-btn:hover {
-  background-color: #e9b220 !important;
-}
-.nav-btn:hover form a {
-  color: #000000 !important;
-  opacity: 0.75;
 }
 
 .decorations {
@@ -357,17 +382,17 @@ iframe:hover {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  min-height: 80vh;
+  min-height: 60vh;
 }
 .preview-layout .title {
-  padding: 10px 16px 10px 16px;
+  padding: 10px 10px 10px 10px;
 }
 .preview-layout .title h2 {
-  margin: 8px 12px 8px 12px;
+  margin: 10px 12px 10px 12px;
 }
 
 section {
-  padding: 50px 8px 50px 8px;
+  padding: 25px 8px 25px 8px;
 }
 
 .vertical-list {
@@ -526,7 +551,6 @@ footer section ul li img {
 #actualite article .actu-text {
   display: flex;
   width: 100%;
-  font-size: 1.5rem;
   flex-direction: column;
   justify-content: space-evenly;
   height: 30vh;
@@ -535,6 +559,13 @@ footer section ul li img {
   flex: auto;
   flex-shrink: 0;
   flex-grow: 0;
+}
+#actualite article .actu-text h3 {
+  font-size: 1.5rem;
+}
+#actualite article .actu-text h4,
+#actualite article .actu-text p {
+  font-size: 1.2rem;
 }
 
 #actualite::before {
@@ -567,13 +598,14 @@ footer section ul li img {
 }
 
 @media (min-width: 1100px) {
-  #burger-menu-open {
-    float: none !important;
+  .nav-desktop-container {
+    display: flex !important;
+  }
+  .nav-container {
     display: none !important;
   }
   #nav-list {
-    display: block !important;
-    float: right !important;
+    display: flex !important;
   }
   .horizontal-list .preview:nth-child(3) {
     display: block !important;
@@ -586,6 +618,9 @@ footer section ul li img {
   }
   #actualite article {
     padding: 0.5vh 10vw 0.5vh 10vw;
+  }
+  #actualite article .actu-text h3 {
+    font-size: 2rem !important;
   }
 }
 @media (min-width: 800px) {
