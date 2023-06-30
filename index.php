@@ -44,7 +44,7 @@ if (isset($_POST['action']) && $_POST['action'] === "deconnexion") {
         $connexion_text = '
         <li class="nav-btn"><img src="assets/img/account.svg" alt="connexion">
         <form>
-        <a class="connexionPopup" data-popup="#popup-1">Connection</a>
+        <a class="connexionPopup" data-popup="#popup-1">Connexion</a>
         </form></li>
         <li class="nav-btn nav-btn__full"><form>
         <a class="connexionPopup" data-popup="#popup-2">Inscription</a>
