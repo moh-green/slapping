@@ -89,9 +89,9 @@ $fin_videos = $debut_videos + $videos_par_page - 1;
         <div id="filters-container">
             <article id="filter">
                 <form method="post" action="video.php">
-                    <input class="btn-filter" type="submit" name="all" value="Tous">
-                    <input class=" <?php echo $music = ($_SESSION['categorie-video'] == 'music') ? "cliked" : "btn-filter" ?>" type="submit" name="musique" value="Musique">
-                    <input class=" <?php echo $sport = ($_SESSION['categorie-video'] == 'sport') ? "cliked" : "btn-filter"  ?>" type="submit" name="sport" value="Sport">
+                    <input class="btn-filter" type="submit" name="all" value="Tous">|
+                    <input class=" <?php echo $music = ($_SESSION['categorie-video'] == 'music') ? "cliked" : "btn-filter" ?>" type="submit" name="musique" value="Musique">|
+                    <input class=" <?php echo $sport = ($_SESSION['categorie-video'] == 'sport') ? "cliked" : "btn-filter"  ?>" type="submit" name="sport" value="Sport">|
                     <input class=" <?php echo $business = ($_SESSION['categorie-video'] == 'business') ? "cliked" : "btn-filter"  ?>" type="submit" name="business" value="Business">
                 </form>
                 <form action="video.php" method="post" class="search-bar">
